@@ -10,7 +10,7 @@
 			        <router-link to='/sta-info/time-update'><el-menu-item index="3-2">按更新时间频率展示</el-menu-item></router-link>
 		        </el-submenu>
 		        <el-submenu index="4">
-			        <template slot="title"><i class="el-icon-message"></i>解析DNS和IP的相关信息</template>
+			        <template slot="title"><i class="el-icon-search"></i>解析DNS和IP的相关信息</template>
 			        <router-link to='/sta-info/ip-num'><el-menu-item index="4-1">域名IP的Online/Offline数量</el-menu-item></router-link>
 			        <router-link to='/sta-info/ip-sur'><el-menu-item index="4-2">IP存活时长图</el-menu-item></router-link>
 			        <router-link to='/sta-info/ip-fre'><el-menu-item index="4-3">恶意域名IP更换频率图</el-menu-item></router-link>
@@ -20,6 +20,11 @@
 
     	<div class="main-right">
 <!--     	<transition name="fade"> -->
+			<div class="con-underline">
+			<div class="dns-num">
+				<span>当前恶意域名数量：</span> <span class="num-class">{{ dnsnum }}</span>
+			</div>
+			</div>
     		<router-view></router-view>
 <!--     	</transition> -->
     	</div>
@@ -29,7 +34,11 @@
 
 <script>
 	export default{
-
+		data () {
+			return{
+				dnsnum:3000
+			}
+		}
 	}
 </script>
 
@@ -38,7 +47,8 @@ main{
 	border: solid 20px #E9ECF1;
 	margin-top: 50px;
 	background-color: #FCFCFC;
-	height: 1000px;
+	height: 100%;
+	min-height: 800px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -54,6 +64,22 @@ main{
 	-webkit-box-flex:5.5;
 	-ms-flex:5.5;
 	flex:5.5;
+	padding: 20px 50px;
+}
+.con-underline{
+	border-bottom: 1px solid #CCCCCC;
+	height: 40px;
+}
+.dns-num{
+	border-left: 8px solid #72b16a;
+}
+.dns-num span{
+	padding-left: 15px;
+	color: #72b16a;
+}
+.num-class{
+	padding-left:5px!important;
+	color: orange!important;
 }
 /* 路由切换动效 */
 /*.fade-enter-active, .fade-leave-active {
