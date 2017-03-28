@@ -49,6 +49,7 @@ main{
 	background-color: #FCFCFC;
 	height: 100%;
 	min-height: 800px;
+	min-width: 1400px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -64,7 +65,7 @@ main{
 	-webkit-box-flex:5.5;
 	-ms-flex:5.5;
 	flex:5.5;
-	padding: 20px 50px;
+	padding: 20px 40px;
 }
 .con-underline{
 	border-bottom: 1px solid #CCCCCC;
