@@ -4,11 +4,6 @@
 		</div>
 		<div class="cur-line"></div>
 		<div id="cur-chart2">
-			<div id="cur-pie1"></div>
-			<div id="cur-pie2"></div>
-			<div style="clear:both"></div>
-			<div id="cur-pie3"></div>
-			<div id="cur-pie4"></div>
 		</div>
 		<div style="clear:both"></div>
 	</div>
@@ -25,8 +20,8 @@
 			}
 		},
 		mounted () {
-			var myChart = echarts.init(document.getElementById('cur-chart1'),'macarons');
-            myChart.setOption({
+			var curChart = echarts.init(document.getElementById('cur-chart1'),'macarons');
+            curChart.setOption({
                 title: { text: '信息维度展示', x:'center' },
                 tooltip: {},
                     toolbox: {
@@ -47,6 +42,7 @@
                 series: [{
                     name: '数量',
                     type: 'bar',
+                    barWidth : 80,
                     data: [50, 20, 12, 32]
                 }]
             });
@@ -96,7 +92,7 @@
 			        }
 			   ]
             })
-            window.onresize = myChart.resize; 
+            window.onresize = curChart.resize; 
         }	
 	}
 </script>

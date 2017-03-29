@@ -47,12 +47,12 @@ main{
 	border: solid 20px #E9ECF1;
 	margin-top: 50px;
 	background-color: #FCFCFC;
-	height: 100%;
-	min-height: 800px;
+	min-height: 855px;
 	min-width: 1400px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	overflow: hidden;
 }
 .main-nav{
 	-webkit-box-flex:1;

@@ -1,12 +1,11 @@
 <template>
   <div>
-    <div id="charts">
-      <div id="main" :style="{width:'600px',height:'400px'}"></div>
-    </div>
+    <div id="spa-map"></div>
   </div>
 </template>
 <script>
     import echarts from "echarts/lib/echarts";
+    import "echarts/map/js/china"
     // import "echarts/lib/chart/bar";
     // import "echarts/lib/chart/lines";
     // import "echarts/lib/component/tooltip";
@@ -17,23 +16,114 @@
         data(){
             return {};
         },
-        methods: {},
+        methods: {
+        },
         mounted() {
-            let myChart = echarts.init(document.getElementById('main'));
-            myChart.setOption({
-                title: {text: 'ECharts 入门示例'},
-                tooltip: {},
-                xAxis: {
-                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '销量',
-                    type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20]
-                }]
-            });
+            function randomData() {
+                return Math.round(Math.random()*1000);
+            }
+            let SpaMap = echarts.init(document.getElementById('spa-map'));
+            SpaMap.setOption({
+                  title: {
+                        text: '恶意域名数量分布图',
+                        left: 'center',
+                        textStyle:{
+                            color: '#428BCA'
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data:['iphone3','iphone4','iphone5']
+                    },
+                    visualMap: {
+                        min: 0,
+                        max: 2500,
+                        left: 'left',
+                        top: 'bottom',
+                        text: ['高','低'],           // 文本，默认为数值文本
+                        calculable: true
+                    },
+                    toolbox: {
+                        show: true,
+                        orient: 'vertical',
+                        left: 'right',
+                        top: 'center',
+                        feature: {
+                            dataView: {readOnly: false},
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    series: [
+                        {
+                            name: '恶意域名',
+                            type: 'map',
+                            layoutCenter: ['50%', '50%'],
+                            layoutSize: 900,
+                            mapType: 'china',
+                            roam: false,
+                            label: {
+                                normal: {
+                                    show: true
+                                },
+                                emphasis: {
+                                    show: true
+                                }
+                            },
+                            data:[
+                                {name: '北京',value: randomData() },
+                                {name: '天津',value: randomData() },
+                                {name: '上海',value: randomData() },
+                                {name: '重庆',value: randomData() },
+                                {name: '河北',value: randomData() },
+                                {name: '河南',value: randomData() },
+                                {name: '云南',value: randomData() },
+                                {name: '辽宁',value: randomData() },
+                                {name: '黑龙江',value: randomData() },
+                                {name: '湖南',value: randomData() },
+                                {name: '安徽',value: randomData() },
+                                {name: '山东',value: randomData() },
+                                {name: '新疆',value: randomData() },
+                                {name: '江苏',value: randomData() },
+                                {name: '浙江',value: randomData() },
+                                {name: '江西',value: randomData() },
+                                {name: '湖北',value: randomData() },
+                                {name: '广西',value: randomData() },
+                                {name: '甘肃',value: randomData() },
+                                {name: '山西',value: randomData() },
+                                {name: '内蒙古',value: randomData() },
+                                {name: '陕西',value: randomData() },
+                                {name: '吉林',value: randomData() },
+                                {name: '福建',value: randomData() },
+                                {name: '贵州',value: randomData() },
+                                {name: '广东',value: randomData() },
+                                {name: '青海',value: randomData() },
+                                {name: '西藏',value: randomData() },
+                                {name: '四川',value: randomData() },
+                                {name: '宁夏',value: randomData() },
+                                {name: '海南',value: randomData() },
+                                {name: '台湾',value: randomData() },
+                                {name: '香港',value: randomData() },
+                                {name: '澳门',value: randomData() }
+                            ]
+                        }
+                    ]
+                });
+        window.onresize = myChart.resize; 
         },
         components: {}
     }
 </script>
+
+<style>
+    #spa-map{
+        margin-top: 30px;
+        margin-left: 50px;
+        width: 90%;
+        height: 740px;
+    }
+</style>
