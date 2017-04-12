@@ -6,6 +6,7 @@
 </template>
 
 <script>
+alert("OK")
 import Vue from 'vue'
 import head1 from './components/header.vue'
 
