@@ -1,11 +1,11 @@
 <template>
 	<header>
 	<el-row>
-		<el-col :span="24">				
-		<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-			<el-menu-item index="1"><router-link to='/'>首页</router-link></el-menu-item>
-			<el-menu-item index="2"><router-link to='/sta-info'>恶意域名统计信息</router-link></el-menu-item>
-			<el-menu-item index="3"><router-link to='/model'>域名恶意评估模型</router-link></el-menu-item>
+		<el-col :span="24">
+		<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" router='true'>
+			<el-menu-item index='/'>首页</el-menu-item>
+			<el-menu-item index='/sta-info'>恶意域名统计信息</el-menu-item>
+			<el-menu-item index='/model'>域名恶意评估模型</el-menu-item>
 		</el-menu>
 		</el-col>
 	</el-row>
@@ -35,6 +35,6 @@ header{
 	z-index: 1000;
 }
 header .el-menu-demo{
-	padding-left: 200px;
+	padding-left: 1%;
 }
 </style>

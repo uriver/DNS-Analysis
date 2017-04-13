@@ -8,11 +8,14 @@ import Model from '@/components/model/model'
 
 import InfoCurrent from '@/components/stainfo/current'
 import InfoSpace from '@/components/stainfo/space'
-import InfoYear from '@/components/stainfo/time-year'
-import InfoUpdate from '@/components/stainfo/time-update'
-import InfoNum from '@/components/stainfo/ip-num'
-import InfoSur from '@/components/stainfo/ip-sur'
-import InfoFre from '@/components/stainfo/ip-fre'
+import InfoYear from '@/components/stainfo/time/time-year'
+import InfoUpdate from '@/components/stainfo/time/time-update'
+import InfoNum from '@/components/stainfo/ip/ip-num'
+import InfoSur from '@/components/stainfo/ip/ip-sur'
+import InfoFre from '@/components/stainfo/ip/ip-fre'
+import InfoAll from '@/components/stainfo/whois/whois-all'
+import InfoSign from '@/components/stainfo/whois/whois-sign'
+import InfoDomains from '@/components/stainfo/whois/whois-domains'
 
 Vue.use(Router)
 
@@ -33,27 +36,39 @@ export default new Router({
           component: InfoCurrent
         },
         {
+          path: 'whois/whois-all',
+          component: InfoAll
+        },
+        {
+          path: 'whois/whois-sign',
+          component: InfoSign
+        },
+        {
+          path: 'whois/whois-domains',
+          component: InfoDomains
+        },
+        {
           path: 'space',
           component: InfoSpace
         },
         {
-          path: 'time-year',
+          path: 'time/time-year',
           component: InfoYear
         },
         {
-          path: 'time-update',
+          path: 'time/time-update',
           component: InfoUpdate
         },
         {
-          path: 'ip-num',
+          path: 'ip/ip-num',
           component:InfoNum
         },
         {
-          path: 'ip-sur',
+          path: 'ip/ip-sur',
           component:InfoSur
         },
         {
-          path: 'ip-fre',
+          path: 'ip/ip-fre',
           component: InfoFre
         }
       ]

@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div class="year-data">
+            <div class="year-font">请选择查看日期：</div>
+            <el-select v-model="value" placeholder="请选择" style="margin-left:160px;">
+                <el-option
+                  v-for="item in years"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+          </el-select>
+        </div>
     <div id="spa-map"></div>
   </div>
 </template>
@@ -13,9 +23,27 @@
     // import "echarts/lib/component/toolbox";
 
     export default{
-        data(){
-            return {};
-        },
+      data () {
+        return{
+          years:[{
+            value: '选项1',
+                label: '2007'
+              }, {
+                value: '选项2',
+                label: '2008'
+              }, {
+                value: '选项3',
+                label: '2009'
+              }, {
+                value: '选项4',
+                label: '2010'
+              }, {
+                value: '选项5',
+                label: '2011'
+              }],
+              value:''
+        }
+      },
         methods: {
         },
         mounted() {
@@ -113,7 +141,7 @@
                         }
                     ]
                 });
-        window.onresize = myChart.resize; 
+        window.onresize = myChart.resize;
         },
         components: {}
     }
@@ -124,6 +152,6 @@
         margin-top: 30px;
         margin-left: 50px;
         width: 90%;
-        height: 740px;
+        height: 720px;
     }
 </style>
