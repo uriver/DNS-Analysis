@@ -4,8 +4,9 @@
 		<el-col :span="24">
 		<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" router='true'>
 			<el-menu-item index='/'>首页</el-menu-item>
-			<el-menu-item index='/sta-info'>恶意域名统计信息</el-menu-item>
+			<el-menu-item index='/sta-info/people/people-name'>恶意域名统计信息</el-menu-item>
 			<el-menu-item index='/model'>域名恶意评估模型</el-menu-item>
+			<el-menu-item index='/check' v-if="success">域名恶意评估结果</el-menu-item>
 		</el-menu>
 		</el-col>
 	</el-row>
@@ -13,16 +14,18 @@
 </template>
 
 <script>
+import sub from "./model/model.vue"
   export default {
     data() {
       return {
         activeIndex: '1',
-      };
+        success:sub,
+      }
     },
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
-      }
+      },
     }
   }
 </script>

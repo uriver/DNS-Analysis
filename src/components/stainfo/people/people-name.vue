@@ -47,6 +47,7 @@
 <script>
   import echarts from "echarts/lib/echarts";
   import "echarts/theme/macarons.js";
+  var yearChart;
   export default{
   data () {
   return{
@@ -65,11 +66,65 @@
   //分页功能
   methods: {
   handleCurrentChange(q) {
-  alert(q)
+  $.ajax({
+  url:"http://172.29.152.3:8000/stainfo/people/peoplename?value="+ q ,
+  dataType:"json",
+  type:'GET',
+  success:function (result)
+  { //原因：全局变量绑定,显示顶端的数字
+  this.dnsnum =result.dnsnum;
+  //表格填充
+  var res=[];
+  var xValue=[];
+  var kind=[];
+  var bad=[];
+  var i = 0;
+  var len=result.info.length;
+  for (i = 0; i < len; i++)
+  {
+     res.push({
+         Alldomain:result.info[i].Alldomain,  //善意的数量
+         name: result.info[i].name,
+         baddomain:result.info[i].baddomain   //恶意的数量 
+     }), 
+      xValue[i]=result.info[i].name;
+      kind[i]=result.info[i].Alldomain-result.info[i].baddomain;
+      bad[i]=result.info[i].baddomain
+  }  
+  this.tableData3=res;
+  //处理echarts
+ 
+yearChart.setOption({
+ xAxis: [{
+  name:'姓名',
+  data: xValue
+  }],
+ series: [
+{
+  name:'恶意域名数量',
+  data:bad
+ },
+{
+      name:'善意域名数量',
+      data:kind
+ },
+ {
+    name:'趋势走向',
+    data:bad
+ }
+ ]
+ });
+  }.bind(this),
+  error:function()
+  {
+  alert("访问服务器失败");
+  }
+  });
+
   }
   },
   mounted () {
-  var yearChart = echarts.init(document.getElementById('top'),'macarons');
+   yearChart = echarts.init(document.getElementById('top'),'macarons');
   yearChart.setOption({
   title: { text: '恶意注册人信息', x:'center' },
   tooltip: {
@@ -140,7 +195,7 @@
 
   //ajax填充数据
   $.ajax({
-  url:"/static/peoplename.txt",
+  url:"http://172.29.152.3:8000/stainfo/people/peoplename?value=1",
   dataType:"json",
   type:'GET',
   success:function (result)
@@ -263,7 +318,7 @@ yearChart.setOption({
   color: #008000;
   margin: 0 0 15px 0
   }
-
+ 
   div.tableContainer {
   clear: both;
   border: 1px solid #963;
@@ -272,13 +327,13 @@ yearChart.setOption({
   width: 756px
   }
 
-
+ 
   html>body div.tableContainer {
   overflow: hidden;
   width: 756px
   }
 
-
+ 
   div.tableContainer table {
   float: left;
   width: 740px
@@ -308,7 +363,7 @@ yearChart.setOption({
   text-align: left
   }
 
-
+ 
   thead.fixedHeader a, thead.fixedHeader a:link, thead.fixedHeader a:visited {
   color: #FFF;
   display: block;
@@ -324,7 +379,7 @@ yearChart.setOption({
   }
 
 
-
+ 
   html>body tbody.scrollContent {
   display: block;
   height: 262px;
@@ -376,6 +431,6 @@ yearChart.setOption({
   html>body tbody.scrollContent td + td + td {
   width: 300px
   }
-
+ 
 
 </style>

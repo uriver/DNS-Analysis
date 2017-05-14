@@ -1,10 +1,11 @@
 <template>
   <div>
     <div class="main-right">
-      <!--     	<transition name="fade"> -->
+      <!--      <transition name="fade">
+      -->
       <div class="con-underline">
         <div class="dns-num">
-          <span>当前恶意注册人总量为:</span>
+          <span>当前恶意注册邮箱总量为:</span>
           <span class="num-class">{{ dnsnum }}</span>
         </div>
       </div>
@@ -18,17 +19,14 @@
       <el-table-column
         prop="name"
         label="恶意注册人姓名"
-        style=" width:40%">
-      </el-table-column>
+        style=" width:40%"></el-table-column>
       <el-table-column
         prop="baddomain"
         label="恶意注册域名数量"
-        style=" width:30%">
-      </el-table-column>
+        style=" width:30%"></el-table-column>
       <el-table-column
         prop="Alldomain"
-        label="注册域名总数量">
-      </el-table-column>
+        label="注册域名总数量"></el-table-column>
     </el-table>
     <div class="block">
       <el-pagination
@@ -37,8 +35,7 @@
         :current-page="PageIndex"
         :page-size="10"
         layout="total, prev, pager, next, jumper"
-        :total="1000">
-      </el-pagination>
+        :total="1000"></el-pagination>
     </div>
   </div>
 
@@ -47,6 +44,7 @@
 <script>
   import echarts from "echarts/lib/echarts";
   import "echarts/theme/macarons.js";
+  var yearChart;
   export default{
   data () {
   return{
@@ -65,13 +63,67 @@
   //分页功能
   methods: {
   handleCurrentChange(q) {
-  alert(q)
+  $.ajax({
+  url:"http://172.29.152.3:8000/stainfo/people/peopleemail?value="+ q ,
+  dataType:"json",
+  type:'GET',
+  success:function (result)
+  { //原因：全局变量绑定,显示顶端的数字
+  this.dnsnum =result.dnsnum;
+  //表格填充
+  var res=[];
+  var xValue=[];
+  var kind=[];
+  var bad=[];
+  var i = 0;
+  var len=result.info.length;
+  for (i = 0; i < len; i++)
+  {
+     res.push({
+         Alldomain:result.info[i].Alldomain,  //善意的数量
+         name: result.info[i].name,
+         baddomain:result.info[i].baddomain   //恶意的数量 
+     }), 
+      xValue[i]=result.info[i].name;
+      kind[i]=result.info[i].Alldomain-result.info[i].baddomain;
+      bad[i]=result.info[i].baddomain
+  }  
+  this.tableData3=res;
+  //处理echarts
+ 
+yearChart.setOption({
+ xAxis: [{
+  name:'邮箱',
+  data: xValue
+  }],
+ series: [
+{
+  name:'恶意域名数量',
+  data:bad
+ },
+{
+      name:'善意域名数量',
+      data:kind
+ },
+ {
+    name:'趋势走向',
+    data:bad
+ }
+ ]
+ });
+  }.bind(this),
+  error:function()
+  {
+  alert("访问服务器失败");
+  }
+  });
+
   }
   },
   mounted () {
-  var yearChart = echarts.init(document.getElementById('top'),'macarons');
+   yearChart = echarts.init(document.getElementById('top'),'macarons');
   yearChart.setOption({
-  title: { text: '恶意注册人信息', x:'center' },
+  title: { text: '恶意注册邮箱信息', x:'center' },
   tooltip: {
   trigger: 'axis',
   axisPointer: {
@@ -140,7 +192,7 @@
 
   //ajax填充数据
   $.ajax({
-  url:"/static/peoplename.txt",
+  url:"http://172.29.152.3:8000/stainfo/people/peopleemail?value=1",
   dataType:"json",
   type:'GET',
   success:function (result)

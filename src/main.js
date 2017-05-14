@@ -7,6 +7,7 @@ import router from './router'
 import echarts from "echarts"
 import Element from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import './a.js'
 Vue.use(Element)
 
 Vue.config.productionTip = false

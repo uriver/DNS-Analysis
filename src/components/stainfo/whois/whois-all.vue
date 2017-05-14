@@ -1,158 +1,149 @@
 <template>
-	<div>
-		<div id="year-top"></div>
-		<div id="year-left"></div>
-		<!--div class="year-line"></div-->
-		<div id="year-right"></div>
-	</div>
+  <div>
+    <!--核心的表格内容-->
+    <h1 class="head">恶意域名的whois信息概览</h1>
+    <el-table
+      :data="whoisAll"
+      height="700"
+      style=":width:100%"
+      >
+     
+      <el-table-column type="expand">
+        <template scope="props">
+          <el-form label-position="left" inline="" class="demo-table-expand">
+            <el-form-item label="一级服务器">
+              <span>{{ props.row.first }}</span>
+            </el-form-item>
+            <el-form-item label="二级服务器">
+              <span>{{ props.row.second }}</span>
+            </el-form-item>
+            <el-form-item label="原始whois信息">
+              <span>{{ props.row.origin }}</span>
+            </el-form-item>
+            <el-form-item label="注册者">
+              <span>{{ props.row.name }}</span>
+            </el-form-item>
+            <el-form-item label="注册者电话">
+              <span>{{ props.row.tel }}</span>
+            </el-form-item>
+            <el-form-item label="注册者邮箱">
+              <span>{{ props.row.email }}</span>
+            </el-form-item>
+            <el-form-item label="whois注册时间">
+              <span>{{ props.row.signin }}</span>
+            </el-form-item>
+            <el-form-item label="whois到期时间">
+              <span>{{ props.row.duetime }}</span>
+            </el-form-item>
+            <el-form-item label="whois更新时间">
+              <span>{{ props.row.update }}</span>
+            </el-form-item>
+              <el-form-item label="注册服务器">
+              <span>{{ props.row.servers }}</span>
+            </el-form-item>
+            <el-form-item label="插入时间">
+              <span>{{ props.row.inserttime }}</span>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
+      
+      <el-table-column
+        prop="tld"
+        label="顶级域"
+        width="120">
+      </el-table-column>
+      <el-table-column
+      prop="condition"
+      label="域名状态"
+      style="width:5%">
+      </el-table-column>
+      <el-table-column
+        prop="business"
+        label="注册商"
+        style="width:45%">
+      </el-table-column>
+      <el-table-column
+        prop="firm"
+        label="注册公司"
+        style="width:15%">
+      </el-table-column>
+      <el-table-column
+        prop="domain"
+        label="域名"
+        style="width:15%">
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
-	import echarts from "echarts/lib/echarts";
-	import "echarts/theme/macarons.js";
-
-	export default{
-		data () {
-			return{
-		        value:''
-			}
-		},
-		mounted () {
-			var yearChart = echarts.init(document.getElementById('year-top'),'macarons');
-            yearChart.setOption({
-                title: { text: '创建/到期域名展示', x:'center' },
-			    legend: {                                   // 图例配置
-			        padding: 5,                             // 图例内边距，单位px，默认上下左右内边距为5
-			        itemGap: 10,                            // Legend各个item之间的间隔，横向布局时为水平间隔，纵向布局时为纵向间隔
-			        data: ['创建域名', '到期域名'],
-			        x:'left'
-			    },
-                tooltip: {},
-                    toolbox: {
-			        show : true,
-			        feature : {
-			            mark : {show: true},
-			            dataView : {show: true, readOnly: false},
-			            magicType : {show: true, type: ['bar', 'line']},
-			            restore : {show: true},
-			            saveAsImage : {show: true}
-			        }
-			    },
-			    calculable : true,
-                xAxis: {
-                    data: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '创建域名',
-                    type: 'line',
-                    data: [60, 77, 65, 83, 74, 95, 75, 82, 113, 78, 99, 100]
-                },{
-                	name: '到期域名',
-                    type: 'line',
-                    data: [74, 67, 85, 73, 79, 105, 95, 82, 103, 88, 69, 80]
-                }]
-            });
-            var leftChart = echarts.init(document.getElementById('year-left'),'macarons');
-            leftChart.setOption({
-            	  title : {
-			        text: '2003-2007年到期域名量显示',
-			        subtext:'默认年份为2003年起',
-			        x:'left'
-			    },
-			    tooltip : {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b} : {c} ({d}%)"
-			    },
-			    legend: {
-			        x : 'center',
-			        y : 'bottom',
-			        data:['2003','2004','2005','2006','2007']
-			    },
-			    calculable : true,
-			    series : [
-			        {
-			            name:'半径模式',
-			            type:'pie',
-			            radius : '70%',
-			            center : ['50%', '50%'],
-			            roseType : 'radius',
-			            data:[
-			                {value:50, name:'2003'},
-			                {value:20, name:'2004'},
-			                {value:22, name:'2005'},
-			                {value:32, name:'2006'},
-			                {value:37, name:'2007'},
-			            ]
-			        }
-			   ]
-            });
-
-          /*  var rightChart = echarts.init(document.getElementById('year-right'),'macarons');
-            rightChart.setOption({
-            	  title : {
-			        text: '2003-2007年创建域名量显示',
-			        subtext:'默认年份为2003年起',
-			        x:'left'
-			    },
-			    tooltip : {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b} : {c} ({d}%)"
-			    },
-			    legend: {
-			        x : 'center',
-			        y : 'bottom',
-			        data:['2003','2004','2005','2006','2007']
-			    },
-			    calculable : true,
-			    series : [
-			        {
-			            name:'半径模式',
-			            type:'pie',
-			            radius : '70%',
-			            center : ['50%', '50%'],
-			            roseType : 'radius',
-			            data:[
-			                {value:43, name:'2003'},
-			                {value:27, name:'2004'},
-			                {value:22, name:'2005'},
-			                {value:36, name:'2006'},
-			                {value:44, name:'2007'},
-			            ]
-			        }
-			   ]
-       })*/
-            window.onresize = yearChart.resize;
-        }
-	}
+  export default{
+  data () {
+  return{
+  whoisAll: []
+  }
+  },
+  mounted(){
+  $.ajax({
+  url:"http://172.29.152.3:8000/stainfo/whois/whoisall",
+  dataType:"json",
+  type:'GET',
+  success:function (result)
+  {
+   //表格填充
+   var res=[];
+   var i = 0;
+   var len=result.whoisall.length;
+   for (i = 0; i < len; i++)
+   {
+     res.push({
+        first:result.whoisall[i].first,
+        second:result.whoisall[i].second,
+        origin:result.whoisall[i].origin,
+        name:result.whoisall[i].name, 
+        tel:result.whoisall[i].tel,
+        email: result.whoisall[i].email,
+        signin:result.whoisall[i].signin,
+        duetime:result.whoisall[i].duetime,
+        update:result.whoisall[i].update,
+        servers:result.whoisall[i].servers,
+        inserttime :result.whoisall[i].inserttime,  
+        tld:result.whoisall[i].tld,
+        condition:result.whoisall[i].condition,
+        business:result.whoisall[i].business,
+        firm:result.whoisall[i].Firm,
+        domain:result.whoisall[i].domain,
+     })
+  }  
+  this.whoisAll=res;
+  }.bind(this),
+  error:function()
+  {
+  alert("访问服务器失败");
+  }
+  });
+  }
+  }
 </script>
 
 <style>
-	#year-top{
-		width: 95%;
-		height: 420px;
-		margin-left: 20px;
-		margin-top: 0px;
-		margin-bottom: 20px;
-		border-bottom: 1px solid #cccccc;
-	}
-	#year-left{
-		width: 42%;
-		height: 300px;
-		margin-left: 40px;
-		float: left;
-	}
-	.year-line{
-		height: 300px;
-		margin-left: 20px;
-		width: 1px;
-		border-left: 1px solid #cccccc;
-		float: left;
-	}
-	#year-right{
-		width: 42%;
-		height: 300px;
-		margin-left: 20px;
-		float: left;
-	}
+  .head{
+  color:#08a9f2;
+  text-align:center;
+  }
+  .demo-table-expand {
+  font-size: 0;
+  }
+  .demo-table-expand label {
+  width: 90px;
+  color: #99a9bf;
+  }
+  .demo-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width:30%
+  }
+
+
 </style>

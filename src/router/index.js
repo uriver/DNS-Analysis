@@ -5,9 +5,8 @@ import Home from '@/components/homepage/homepage'
 import Head from '@/components/header'
 import StaInfo from '@/components/stainfo/mainpage'
 import Model from '@/components/model/model'
-
 import InfoCurrent from '@/components/stainfo/current'
-import InfoSpace from '@/components/stainfo/space'
+import InfoSpace from '@/components/stainfo/space/space-info'
 import InfoYear from '@/components/stainfo/time/time-year'
 import InfoUpdate from '@/components/stainfo/time/time-update'
 import InfoNum from '@/components/stainfo/ip/ip-num'
@@ -16,7 +15,10 @@ import InfoFre from '@/components/stainfo/ip/ip-fre'
 import InfoAll from '@/components/stainfo/whois/whois-all'
 import InfoSign from '@/components/stainfo/whois/whois-sign'
 import InfoDomains from '@/components/stainfo/whois/whois-domains'
-
+import InfoName from  '@/components/stainfo/people/people-name'
+import InfoTel from '@/components/stainfo/people/people-tel'
+import InfoEmail from '@/components/stainfo/people/people-email'
+import Check from '@/components/model/check/check'
 Vue.use(Router)
 
 export default new Router({
@@ -48,7 +50,7 @@ export default new Router({
           component: InfoDomains
         },
         {
-          path: 'space',
+          path: 'space/space-info',
           component: InfoSpace
         },
         {
@@ -70,13 +72,32 @@ export default new Router({
         {
           path: 'ip/ip-fre',
           component: InfoFre
+        },
+        {
+             path: 'people/people-name',
+             component: InfoName
+
+        },
+        {
+            path:'people/people-tel',
+            component:InfoTel
+        },
+        {
+            path:'people/people-email',
+            component:InfoEmail
         }
+      
       ]
     },
     {
       path: '/model',
       name: 'Model',
       component: Model
+    },
+    {
+      path: '/check',
+      name: 'Check',
+      component: Check
     }
   ]
 })

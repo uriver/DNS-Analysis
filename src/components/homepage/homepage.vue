@@ -11,12 +11,11 @@
 				</div>
 				<transition name="mainTran">
 					<div class="home-main" v-show="!isPoint">
-						<router-link to='/sta-info'><button class="h-button">当前维度展示</button></router-link>
-						<router-link to='/sta-info'><button class="h-button">恶意注册者黑名单</button></router-link>
-						<router-link to='/sta-info'><button class="h-button">whois信息展示</button></router-link>
-						<router-link to='/sta-info'><button class="h-button">空间维度信息展示</button></router-link>
-						<router-link to='/sta-info'><button class="h-button">时间维度信息展示</button></router-link>
-						<router-link to='/sta-info'><button class="h-button">DNS和IP相关信息</button></router-link>
+						<router-link to='/sta-info/people/people-name'><button @click="change()" class="h-button">恶意注册人黑名单</button></router-link>
+						<router-link to='sta-info/whois/whois-all'><button class="h-button">Whois信息展示</button></router-link>
+						<router-link to='/sta-info/space/space-info'><button class="h-button">空间维度信息展示</button></router-link>
+						<router-link to='/sta-info/time/time-year'><button class="h-button">时间维度信息展示</button></router-link>
+						<router-link to='/sta-info/ip/ip-num'><button class="h-button">DNS和IP相关信息</button></router-link>
 					</div>
 				</transition>
 			</div>
@@ -184,6 +183,9 @@
     	methods:{
     	 	showClick:function(e){
     	 		this.isPoint = !this.isPoint
+    	 	},
+    	 	change:function(){
+    	 		
     	 	}
     	 }
 	}
@@ -210,9 +212,15 @@
 		text-align:center;
 		font-family: "微软雅黑";
 	}
+	.home-show h1{
+		font-size: 42px;
+	}
+	.home-show p{
+		font-size: 18px;
+	}
 	.home-button{
-	    background-color: #4CAF50; /* Green */
-    	border: 2px solid #4CAF50;
+	    background-color: #08A9F2; /* Green */
+    	border: 2px solid #08A9F2;
 	    color: white;
 	    height: 50px;
 	    padding: 7px 32px;
@@ -220,7 +228,7 @@
 	    text-decoration: none;
 	    display: inline-block;
 	    font-size: 20px;
-	    margin: 4px 2px;
+	    margin: 12px 2px;
 	    -webkit-transition-duration: 0.4s; /* Safari */
 	    transition-duration: 0.4s;
 	    cursor: pointer;
@@ -235,7 +243,7 @@
 	}
 	.show-fun:hover{
 		cursor: pointer; 
-		color: #4CAF50;
+		color: #ADD8E6;
 	}
 	.mainTran-enter-active, .mainTran-leave-active {
 	  transition: opacity .7s
@@ -247,7 +255,7 @@
 		margin-top: 40px;
 	}
 	.h-button{
-	    border: 1px solid #4CAF50;
+	    border: 1px solid #ADD8E6;
 	    color: white;
 	    height: 45px;
 	    padding: 5px 32px;
@@ -263,7 +271,7 @@
    		color: black; 
 	}
 	.h-button:hover{
-		background-color: #4CAF50; 
+		background-color: orange; 
    		color: white; 
 	}
 </style>

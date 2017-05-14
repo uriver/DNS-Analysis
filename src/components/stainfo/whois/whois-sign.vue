@@ -7,81 +7,116 @@
 </template>
 
 <script>
-	import echarts from "echarts/lib/echarts";
-	import "echarts/theme/macarons.js";
+  import echarts from "echarts/lib/echarts";
+  import "echarts/theme/macarons.js";
 
-	export default{
-		mounted () {
-			var signChart = echarts.init(document.getElementById('signChart'),'macarons');
-            signChart.setOption({
-                title: { text: '恶意域名注册商分布图TOP10', x:'center' },
-                tooltip: {},
-                    toolbox: {
-			        show : true,
-			        feature : {
-			            mark : {show: true},
-			            dataView : {show: true, readOnly: false},
-			            magicType : {show: true, type: ['line', 'bar']},
-			            restore : {show: true},
-			            saveAsImage : {show: true}
-			        }
-			    },
-			    calculable : true,
-                xAxis: {
-                    data: ["A","B","C","D","E","F","G","H","I","J"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '数量',
-                    type: 'bar',
-                    barWidth : 40,
-                    data: [180, 170, 98, 96, 92, 87, 87, 64, 57, 49,]
-                }]
-            });
+  export default{
+  mounted () {
 
-					var signPlan = echarts.init(document.getElementById('signPlan'),'macarons');
-          signPlan.setOption({
-            	  title : {
-			        text: '恶意域名注册商分布图TOP10',
-			        subtext:' ',
-			        x:'left'
-			    },
-			    tooltip : {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b} : {c} ({d}%)"
-			    },
-			    legend: {
-			        x : 'center',
-			        y : 'bottom',
-			        data: ["A","B","C","D","E","F","G","H","I","J","others"]
-			    },
-			    calculable : true,
-			    series : [
-			        {
-			            name:'模式',
-			            type:'pie',
-			            radius : '70%',
-			            center : ['50%', '50%'],
-			            //roseType : 'area',
-			            data:[
-			                {value:180, name:'A'},
-			                {value:170, name:'B'},
-			                {value:98, name:'C'},
-			                {value:96, name:'D'},
-			                {value:92, name:'E'},
-											{value:87, name:'F'},
-											{value:87, name:'G'},
-											{value:64, name:'H'},
-											{value:57, name:'I'},
-											{value:49, name:'J'},
-											{value:4401, name:'others'},
-			            ]
-			        }
-			   ]
-            })
-            window.onresize = signChart.resize;
-        }
-	}
+  var signChart = echarts.init(document.getElementById('signChart'),'macarons');
+  signChart.setOption({
+  title: { text: '恶意域名注册商分布图', x:'center' },
+  tooltip: {},
+  xAxis: {
+  data: [],
+  axisLabel:{
+  interval:0,  //横轴的信息全部显示
+  rotate:-15 //-15度角倾斜显示
+  }
+  },
+  yAxis: {},
+  series: [{
+  name: '数量',
+  type: 'bar',
+  barWidth : 40,
+  data: []
+  }]
+  });
+
+  var signPlan = echarts.init(document.getElementById('signPlan'),'macarons');
+  signPlan.setOption({
+  title : {
+     text: '恶意域名注册商分布图',
+     subtext:' ',
+     x:'center'
+      },
+  tooltip : {
+  trigger: 'item',
+  formatter: "{a} <br/>{b} : {c} ({d}%)"
+  },
+  legend: {
+  x : 'center',
+  y : 'bottom',
+  data:[]
+  },
+  series : [
+  {
+  name:'恶意域名注册商分布图',
+  type:'pie',
+  radius : '70%',
+  label: {
+  normal: {show: false},
+  emphasis: {show: true }
+  },
+  center : ['50%', '50%'],
+  data:[
+  //  {value:180, name:'A'},
+  //  {value:200,name:'B'}
+  ]
+  }]
+  })
+
+  window.onresize = signChart.resize;
+
+  //AJAX
+
+  $.ajax({
+  url:"http://172.29.152.3:8000/stainfo/whois/whoissign",
+  dataType:"json",
+  type:'GET',
+  success:function (result)
+  {
+  var xValue=new Array();
+  var yValue=new Array();
+  var i = 0;
+  //将信息合并到一个数组里面
+  for (i = 0; i < 10; i++)
+    {
+       xValue[i]=result.info[i].registrar;
+       yValue[i]=result.info[i].num;
+    }
+    signChart.setOption
+    ({
+       xAxis:{
+            data: xValue,
+            name:'恶意注册人'
+            },
+       series: [{
+            data:yValue
+             }]
+     });
+     
+      signPlan.setOption({
+         legend: {data:xValue},
+         series : [{
+                 data:(function(){
+                       var res=[];
+                       for (i = 0; i < 10; i++)
+                       {
+                          res.push({
+                           name:xValue[i],
+                           value:yValue[i]
+                        });  
+                       }
+                       return res;
+                       })()
+                }]   
+      })
+   }
+});
+  
+  }
+  }
 </script>
 
 <style>

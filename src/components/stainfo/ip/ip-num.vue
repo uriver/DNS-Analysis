@@ -24,17 +24,6 @@
             num1Chart.setOption({
                 title: { text: '当前恶意域名在线IP与离线IP数量显示', x:'center' },
                 tooltip: {},
-                    toolbox: {
-			        show : true,
-			        feature : {
-			            mark : {show: true},
-			            dataView : {show: true, readOnly: false},
-			            magicType : {show: true, type: ['line', 'bar']},
-			            restore : {show: true},
-			            saveAsImage : {show: true}
-			        }
-			    },
-			    calculable : true,
                 xAxis: {
                     data: ["Online","Offline"]
                 },
@@ -43,56 +32,82 @@
                     name: '状态',
                     type: 'bar',
                     barWidth : 80,
-                    data: [380, 570]
+                    data: []
                 }]
             });
 
             var num2Chart = echarts.init(document.getElementById('IP-num2'),'macarons');
             num2Chart.setOption({
             	  title : {
-			        text: '按比例展示',
+			        text: '比例视图',
 			        x:'center'
 			    },
 			    tooltip : {
 			        trigger: 'item',
 			        formatter: "{a} <br/>{b} : {c} ({d}%)"
-			    },
-			    legend: {
-			        x : 'center',
-			        y : 'bottom',
-			        data:["Online","Offline"]
-			    },
-			    toolbox: {
-			        show : true,
-			        feature : {
-			            mark : {show: true},
-			            dataView : {show: true, readOnly: false},
-			            magicType : {
-			                show: true,
-			                type: ['pie', 'funnel']
-			            },
-			            restore : {show: true},
-			            saveAsImage : {show: true}
-			        }
-			    },
-			    calculable : true,
-			    series : [
-			        {
-			            name:'比例展示',
-			            type:'pie',
-			            radius : '55%',
-			            center : ['50%', '50%'],
-			            // roseType : 'radius',
-			            data:[
-			                {value:380, name:'Online'},
-			                {value:570, name:'Offline'},
-			            ]
-			        }
-			   ]
-            })
-            window.onresize = num1Chart.resize; 
-        }	
-	}
+  },
+  legend: {
+  x : 'center',
+  y : 'bottom',
+  data:["Online","Offline"]
+  },
+
+  series : [
+  {
+  name:'比例展示',
+  type:'pie',
+  radius : '55%',
+  center : ['50%', '50%'],
+  // roseType : 'radius',
+  data:[]
+  }
+  ]
+  })
+  window.onresize = num1Chart.resize;
+
+
+  $. ajax({
+  url:"http://172.29.152.3:8000/stainfo/ip/ipnum",
+  dataType:"json",
+  type:"GET",
+  success:function(result)
+  {
+  //alert("Hi");
+  var yValue=[];
+  var xValue=["Online","Offline"]
+  var i=0;
+  yValue[0]=result.Offline;
+  yValue[1]=result.Online;
+
+  num1Chart.setOption({
+  series: [{
+  name: '数量',
+  data: yValue
+  }]
+  });
+  num2Chart.setOption({
+  series : [{
+  data:(function(){
+  var res=[];
+  for (i = 0; i < 2; i++)
+                       {
+                          res.push({
+                           name:xValue[i],
+                           value:yValue[i]
+                        });  
+                       }
+                       return res;
+                       })()
+                }]   
+      })
+
+  //SUCCEESS
+  }
+  //AJAX
+  })
+
+  }
+  }
 </script>
 
 <style>

@@ -1,51 +1,134 @@
 <template>
 	<div>
-		<div id="freChart"></div>
+		<div id="IP-num1">
+		</div>
+		<div class="IP-line"></div>
+		<div id="IP-num2">
+		</div>
+		<div style="clear:both"></div>
 	</div>
+	
 </template>
 
 <script>
 	import echarts from "echarts/lib/echarts";
 	import "echarts/theme/macarons.js";
-
 	export default{
+		data () {
+			return{
+
+			}
+		},
 		mounted () {
-			var freChart = echarts.init(document.getElementById('freChart'),'macarons');
-            freChart.setOption({
-                title: { text: 'IP更换频率图', x:'center' },
+			var num1Chart = echarts.init(document.getElementById('IP-num1'),'macarons');
+            num1Chart.setOption({
+                title: { text: '当前恶意域名在线IP与离线IP数量显示', x:'center' },
                 tooltip: {},
-                    toolbox: {
-			        show : true,
-			        feature : {
-			            mark : {show: true},
-			            dataView : {show: true, readOnly: false},
-			            magicType : {show: true, type: ['line', 'bar']},
-			            restore : {show: true},
-			            saveAsImage : {show: true}
-			        }
-			    },
-			    calculable : true,
                 xAxis: {
-                    data: ["1天","2天","3天","5天","7天","9天","11天","15天","20天","25天","30天","40天","50天","60天","更多"]
+                    data: ["Online","Offline"]
                 },
                 yAxis: {},
                 series: [{
-                    name: '数量',
+                    name: '状态',
                     type: 'bar',
-                    barWidth : 40,
-                    data: [95, 73, 78, 86, 118, 127, 97, 84, 117, 79, 65, 64, 70, 54, 45]
+                    barWidth : 80,
+                    data: []
                 }]
             });
-            window.onresize = freChart.resize; 
-        }
-	}
+
+            var num2Chart = echarts.init(document.getElementById('IP-num2'),'macarons');
+            num2Chart.setOption({
+            	  title : {
+			        text: '比例视图',
+			        x:'center'
+			    },
+			    tooltip : {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b} : {c} ({d}%)"
+  },
+  legend: {
+  x : 'center',
+  y : 'bottom',
+  data:["Online","Offline"]
+  },
+
+  series : [
+  {
+  name:'比例展示',
+  type:'pie',
+  radius : '55%',
+  center : ['50%', '50%'],
+  // roseType : 'radius',
+  data:[]
+  }
+  ]
+  })
+  window.onresize = num1Chart.resize;
+
+
+  $. ajax({
+  url:"/static/ipnum.txt",
+  dataType:"json",
+  type:"GET",
+  success:function(result)
+  {
+  //alert("Hi");
+  var yValue=[];
+  var xValue=["Online","Offline"]
+  var i=0;
+  yValue[0]=result.Offline;
+  yValue[1]=result.Online;
+
+  num1Chart.setOption({
+  series: [{
+  name: '数量',
+  data: yValue
+  }]
+  });
+  num2Chart.setOption({
+  series : [{
+  data:(function(){
+  var res=[];
+  for (i = 0; i < 10; i++)
+                       {
+                          res.push({
+                           name:xValue[i],
+                           value:yValue[i]
+                        });  
+                       }
+                       return res;
+                       })()
+                }]   
+      })
+
+  //SUCCEESS
+  }
+  //AJAX
+  })
+
+  }
+  }
 </script>
 
 <style>
-	#freChart{
-		width: 95%;
-		height: 700px;
-		margin-top: 30px;
+	#IP-num1{
+		margin-top: 80px;
+		width: 52%;
+		height: 600px;
+		float: left;
+	}
+	.IP-line{
+		height: 600px;
+		float: left;
 		margin-left: 30px;
+		width: 5px;
+		margin-top: 80px;
+		border-left: 1px solid #cccccc;
+	}
+	#IP-num2{
+		margin-top: 80px;
+		width: 42%;
+		height: 600px;
+		float: left;
 	}
 </style>
