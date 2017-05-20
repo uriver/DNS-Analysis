@@ -4,7 +4,7 @@
 			<div class="model-top">
 				<div class="con-underline">
 					<div class="dns-num">
-						<span>当前恶意域名数量：</span> <span class="num-class">{{ dnsnum }}</span>
+						<span>当前非法域名数量：</span> <span class="num-class">{{ dnsnum }}</span>
 					</div>
 				</div>
 				<router-view></router-view>
@@ -26,11 +26,22 @@
 			}
 		},
 		methods: {
-      onSubmit() {
-        alert('SECUSS');
+      	onSubmit() {
+            $.ajax({
+		        url:"/static/all.json",
+		        data:this.inputs,
+		        async :false,
+		        type:'POST',
+		        success:function (samedata) {
+		            
+		        }.bind(this),
+		        error:function(){
+		            alert('发送数据失败！')
+		        },
+		    });
+		  }
       }
     }
-	}
 </script>
 
 <style>

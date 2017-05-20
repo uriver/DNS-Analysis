@@ -69,7 +69,7 @@
         };
         $.ajax(
             {
-                url:"/static/reson.json",
+                url:"/static/all.json",
                 dataType:"json",
                 type:'GET',
                 success:function (result) {

@@ -17,7 +17,7 @@
         },
         mounted() {
         	$.ajax({
-		        url:"/static/check-space.json",
+		        url:"/static/all.json",
 		        dataType:"json",
 		        type:'GET',
 		        success:function (ajaxdata) {

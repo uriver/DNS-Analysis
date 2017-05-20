@@ -15,7 +15,7 @@
 
   var signChart = echarts.init(document.getElementById('signChart'),'macarons');
   signChart.setOption({
-  title: { text: '恶意域名注册商分布图', x:'center' },
+  title: { text: '非法域名注册商分布图', x:'center' },
   tooltip: {},
   xAxis: {
   data: [],
@@ -36,7 +36,7 @@
   var signPlan = echarts.init(document.getElementById('signPlan'),'macarons');
   signPlan.setOption({
   title : {
-     text: '恶意域名注册商分布图',
+     text: '非法域名注册商分布图',
      subtext:' ',
      x:'center'
       },
@@ -51,7 +51,7 @@
   },
   series : [
   {
-  name:'恶意域名注册商分布图',
+  name:'非法域名注册商分布图',
   type:'pie',
   radius : '70%',
   label: {
@@ -89,7 +89,7 @@
     ({
        xAxis:{
             data: xValue,
-            name:'恶意注册人'
+            name:'非法注册人'
             },
        series: [{
             data:yValue

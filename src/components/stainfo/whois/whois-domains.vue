@@ -14,7 +14,7 @@
 		mounted () {
 			var signChart = echarts.init(document.getElementById('signChart'),'macarons');
       signChart.setOption({
-      title: { text: '恶意域名顶级域分布图', x:'center' },
+      title: { text: '非法域名顶级域分布图', x:'center' },
       tooltip: {},
       xAxis: {
           //data: ["A","B","C","D","E","F","G","H","I","J"] 
@@ -37,7 +37,7 @@
 					var signPlan = echarts.init(document.getElementById('signPlan'),'macarons');
           signPlan.setOption({
             	  title : {
-			        text: '恶意域名顶级域分布图',
+			        text: '非法域名顶级域分布图',
 			        x:'center'
 			    },
 			    tooltip : {
@@ -51,7 +51,7 @@
   },
   series : [
   {
-  name:'恶意域名顶级域分布图',
+  name:'非法域名顶级域分布图',
   type:'pie',
   radius : '70%',
   center : ['50%', '50%'],
@@ -86,7 +86,7 @@
     ({
        xAxis:{
             data: xValue,
-             name:'恶意注册域名'
+             name:'非法注册域名'
              },
        series: [{
             name: '数量',

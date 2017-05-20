@@ -3,19 +3,19 @@
 		<canvas id="home-canvas" width="1419" height="264"></canvas>
 		<div class="home-contant">
 			<div class="home-show">
-				<h1>恶意域名分析系统</h1>
+				<h1>非法域名挖掘与画像系统</h1>
 				<p>这是一段简短的介绍信息，大概有两句话大约有三十个字</p>
-				<router-link to='/model'><button class="home-button">恶意域名评估</button></router-link>
+				<router-link to='/model'><button class="home-button">域名评估</button></router-link>
 				<div></div>
 				<div class="show-fun" :class="[isPoint?'el-icon-arrow-down':'el-icon-arrow-up']" @click="showClick">
 				</div>
 				<transition name="mainTran">
 					<div class="home-main" v-show="!isPoint">
-						<router-link to='/sta-info/people/people-name'><button @click="change()" class="h-button">恶意注册人黑名单</button></router-link>
-						<router-link to='sta-info/whois/whois-all'><button class="h-button">Whois信息展示</button></router-link>
-						<router-link to='/sta-info/space/space-info'><button class="h-button">空间维度信息展示</button></router-link>
-						<router-link to='/sta-info/time/time-year'><button class="h-button">时间维度信息展示</button></router-link>
-						<router-link to='/sta-info/ip/ip-num'><button class="h-button">DNS和IP相关信息</button></router-link>
+						<router-link to='/sta-info/people/people-name'><button @click="change()" class="h-button">非法注册人黑名单</button></router-link>
+						<router-link to='sta-info/whois/whois-all'><button @click="change()" class="h-button">域名WHOIS信息展示</button></router-link>
+						<router-link to='/sta-info/space/space-info'><button @click="change()" class="h-button">空间维度信息展示</button></router-link>
+						<router-link to='/sta-info/time/time-year'><button @click="change()" class="h-button">时间维度信息展示</button></router-link>
+						<router-link to='/sta-info/ip/ip-num'><button @click="change()" class="h-button">DNS和IP相关信息</button></router-link>
 					</div>
 				</transition>
 			</div>

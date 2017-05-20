@@ -1,8 +1,8 @@
 <template>
-	<div id='checksame'>
+	<div id='checksame' v-if="seenx == 'true'">
 		<h2>近期同类型事件分析</h2>
     <div class='tab1'>
-      <h3>恶意类型</h3>
+      <h3>非法类型</h3>
     </div>
     <div class='tab2'>
       <p>{{sametype}}</p>
@@ -29,7 +29,8 @@ import "echarts/theme/macarons.js";
 		data(){
 			return{
 		        sametype:'',
-		        samenum:''
+		        samenum:'',
+		        seenx:'true'
 			}
 		},
 		ready:function(){
@@ -89,15 +90,16 @@ import "echarts/theme/macarons.js";
 		      	}
             //window.onresize = myChart.resize;
 						$.ajax({
-								url:"/static/same.json",
+								url:"/static/all.json",
 								dataType:"json",
 								//async :false,
 								type:'GET',
 								//date:{"name":123},
 								success:function (samedata) {
-										this.sametype=samedata.samet;
-										this.samenum=samedata.samen;
-										showsame(samedata);
+										this.sametype=samedata.same_event[0].samet;
+										this.samenum=samedata.same_event[0].samen;
+										this.seenx=samedata.same_event[0].seen;
+										showsame(samedata.same_event[0]);
 								}.bind(this),
 								error:function(){
 										alert('获取数据失败！')

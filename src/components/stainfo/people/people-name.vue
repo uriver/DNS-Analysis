@@ -4,7 +4,7 @@
       <!--     	<transition name="fade"> -->
       <div class="con-underline">
         <div class="dns-num">
-          <span>当前恶意注册人总量为:</span>
+          <span>当前非法注册人总量为:</span>
           <span class="num-class">{{ dnsnum }}</span>
         </div>
       </div>
@@ -17,12 +17,12 @@
     style="width: 100%">
       <el-table-column
         prop="name"
-        label="恶意注册人姓名"
+        label="非法注册人姓名"
         style=" width:40%">
       </el-table-column>
       <el-table-column
         prop="baddomain"
-        label="恶意注册域名数量"
+        label="非法注册域名数量"
         style=" width:30%">
       </el-table-column>
       <el-table-column
@@ -85,7 +85,7 @@
      res.push({
          Alldomain:result.info[i].Alldomain,  //善意的数量
          name: result.info[i].name,
-         baddomain:result.info[i].baddomain   //恶意的数量 
+         baddomain:result.info[i].baddomain   //非法的数量 
      }), 
       xValue[i]=result.info[i].name;
       kind[i]=result.info[i].Alldomain-result.info[i].baddomain;
@@ -101,7 +101,7 @@ yearChart.setOption({
   }],
  series: [
 {
-  name:'恶意域名数量',
+  name:'非法域名数量',
   data:bad
  },
 {
@@ -126,7 +126,7 @@ yearChart.setOption({
   mounted () {
    yearChart = echarts.init(document.getElementById('top'),'macarons');
   yearChart.setOption({
-  title: { text: '恶意注册人信息', x:'center' },
+  title: { text: '非法注册人信息', x:'center' },
   tooltip: {
   trigger: 'axis',
   axisPointer: {
@@ -137,7 +137,7 @@ yearChart.setOption({
   }
   },
   legend: {
-  data:['趋势走向','善意域名数量','恶意域名数量'],
+  data:['趋势走向','善意域名数量','非法域名数量'],
   align: 'left',
   left: 20
   },
@@ -169,7 +169,7 @@ yearChart.setOption({
   }],
 
   series: [{
-  name:'恶意域名数量',
+  name:'非法域名数量',
   type:'bar',
   stack: '域名数量',
   data:[],
@@ -214,7 +214,7 @@ yearChart.setOption({
      res.push({
          Alldomain:result.info[i].Alldomain,  //善意的数量
          name: result.info[i].name,
-         baddomain:result.info[i].baddomain   //恶意的数量 
+         baddomain:result.info[i].baddomain   //非法的数量 
      }), 
       xValue[i]=result.info[i].name;
       kind[i]=result.info[i].Alldomain-result.info[i].baddomain;
@@ -230,7 +230,7 @@ yearChart.setOption({
   }],
  series: [
 {
-  name:'恶意域名数量',
+  name:'非法域名数量',
   data:bad
  },
 {

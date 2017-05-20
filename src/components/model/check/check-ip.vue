@@ -28,11 +28,11 @@
 		methods:{
 			getCIP:function(){
 				$.ajax({
-		        url:"/static/check-ip.json",
+		        url:"/static/all.json",
 		        dataType:"json",
 		        type:'GET',
 		        success:function (samedata) {
-		            this.ipData=samedata;
+		            this.ipData=samedata.ip;
 		        }.bind(this),
 		        error:function(){
 		            alert('获取数据失败！');

@@ -1,7 +1,21 @@
 <template>
+<div v-if= "Mes.seen == 'true'" >
   <div id='checkphoto'>
-    <h2>页面快照</h2>
-    <img :src="ImgPath" />
+  		<h2>页面快照</h2>
+  		<div class='tab1'>
+  			<h3>网页标题</h3>
+  		</div>
+  		<div class='tab2'>
+  			<p>{{Mes.dnstitle}}</p>
+  		</div>
+  		<div class='tab1'>
+  			<h3>页面内容关键词</h3>
+  		</div>
+  		<div class='tab2'>
+  			<p>{{Mes.dnskey}}</p>
+  		</div>
+  		<img :src="ImgPath" />  
+  	</div>
   </div>
 </template>
 
@@ -9,7 +23,8 @@
 	export default{
 		data(){
 			return{
-				ImgPath:""
+				ImgPath:"",
+				Mes:[]
 			}
 		},
 		mounted:function(){
@@ -18,11 +33,12 @@
 		methods:{
 			getIMG:function(){
 				$.ajax({
-		        url:"/static/check-photo.json",
+		        url:"/static/all.json",
 		        dataType:"json",
 		        type:'GET',
-		        success:function (samedata) {
-		            this.ImgPath=samedata[0].img;
+		        success:function (data) {
+		            this.Mes=data.show_img;
+		            this.ImgPath = data.show_img.img;
 		        }.bind(this),
 		        error:function(){
 		            alert('获取数据失败！');

@@ -1,6 +1,6 @@
 <template>
 	<div id='checkwhois'>
-		<h2>whois信息</h2>
+		<h2>域名WHOIS信息</h2>
     <el-table
 		 :data="whoisData"
 		 style="width: 100%">
@@ -24,11 +24,11 @@
 		},
 		created:function(){
 			$.ajax({
-	        url:"/static/check-whois.json",
+	        url:"/static/all.json",
 	        dataType:"json",
 	        type:'GET',
 	        success:function (data) {
-	            this.whoisData = data
+	            this.whoisData = data.whois
 	        }.bind(this),
 	        error:function(){
 	            alert('获取数据失败！')

@@ -5,18 +5,18 @@
 	       <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
            
            <el-submenu index="1">
-             <template slot="title"><i class="el-icon-warning"></i>恶意注册者黑名单信息 </template> 
-             <router-link to='/sta-info/people/people-name'> <el-menu-item index="1-1">恶意注册人信息</el-menu-item></router-link>
-             <router-link to='/sta-info/people/people-tel'><el-menu-item index="1-2">恶意注册电话</el-menu-item></router-link>
-             <router-link to='/sta-info/people/people-email'><el-menu-item index="1-3">恶意注册邮箱</el-menu-item></router-link>
+             <template slot="title"><i class="el-icon-warning"></i>非法注册者黑名单信息 </template> 
+             <router-link to='/sta-info/people/people-name'> <el-menu-item index="1-1">非法注册人信息</el-menu-item></router-link>
+             <router-link to='/sta-info/people/people-tel'><el-menu-item index="1-2">非法注册电话</el-menu-item></router-link>
+             <router-link to='/sta-info/people/people-email'><el-menu-item index="1-3">非法注册邮箱</el-menu-item></router-link>
            </el-submenu>
        
            
 						<el-submenu index="2">
-			        <template slot="title"><i class="el-icon-menu"></i>whois总体信息展示</template>
-			        <router-link to='/sta-info/whois/whois-all'><el-menu-item index="2-1">whois总体概览</el-menu-item></router-link>
-			        <router-link to='/sta-info/whois/whois-sign'><el-menu-item index="2-2">恶意域名注册商分布</el-menu-item></router-link>
-							<router-link to='/sta-info/whois/whois-domains'><el-menu-item index="2-3">恶意域名顶级域分布</el-menu-item></router-link>
+			        <template slot="title"><i class="el-icon-menu"></i>域名WHOIS信息展示</template>
+			        <router-link to='/sta-info/whois/whois-all'><el-menu-item index="2-1">WHOIS总体概览</el-menu-item></router-link>
+			        <router-link to='/sta-info/whois/whois-sign'><el-menu-item index="2-2">非法域名所属注册商</el-menu-item></router-link>
+							<router-link to='/sta-info/whois/whois-domains'><el-menu-item index="2-3">非法域名所属顶级域</el-menu-item></router-link>
 		        </el-submenu>
            
 		      	<router-link to='/sta-info/space/space-info'><el-menu-item index="3"><i class="el-icon-setting"></i>空间维度展示信息</el-menu-item></router-link>
@@ -31,7 +31,7 @@
 			        <template slot="title"><i class="el-icon-search"></i>解析DNS和IP的相关信息</template>
 			        <router-link to='/sta-info/ip/ip-num'><el-menu-item index="5-1">域名IP的Online/Offline数量</el-menu-item></router-link>
 			        <router-link to='/sta-info/ip/ip-sur'><el-menu-item index="5-2">IP存活时长图</el-menu-item></router-link>
-			        <!--router-link to='/sta-info/ip-fre'><el-menu-item index="6-3">恶意域名IP更换频率图</el-menu-item></router-link-->
+			        <!--router-link to='/sta-info/ip-fre'><el-menu-item index="6-3">非法域名IP更换频率图</el-menu-item></router-link-->
 		        </el-submenu>
            
 		    </el-menu>

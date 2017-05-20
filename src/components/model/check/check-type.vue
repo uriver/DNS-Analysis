@@ -1,8 +1,10 @@
 <template>
   <div id="checktype">
-    <h2>恶意评估结果</h2>
+    <h1 style="font-weight: bold;">域名画像评估报告</h1>
+    <p></p>
     <div class="tab1">
-      <h2>{{illtype}} : {{score}}</h2>
+      <h2>域名性质：{{illtype}} </h2>
+      <h2>评估分数: {{score}}</h2>
     </div>
   </div>
 </template>
@@ -16,15 +18,13 @@ export default{
   },
   created:function(){
     $.ajax({
-        url:"/static/same.json",
+        url:"/static/all.json",
         dataType:"json",
         async :false,
         type:'GET',
-        date:{"name":123},
         success:function (samedata) {
-            this.illtype=samedata.samen;
-            this.score=samedata.samet;
-
+            this.illtype=samedata.base_info.area;
+            this.score=samedata.base_info.score;
         }.bind(this),
         error:function(){
             alert('获取数据失败！')
