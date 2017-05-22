@@ -5,10 +5,10 @@
 	       <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
            
            <el-submenu index="1">
-             <template slot="title"><i class="el-icon-warning"></i>非法注册者黑名单信息 </template> 
-             <router-link to='/sta-info/people/people-name'> <el-menu-item index="1-1">非法注册人信息</el-menu-item></router-link>
-             <router-link to='/sta-info/people/people-tel'><el-menu-item index="1-2">非法注册电话</el-menu-item></router-link>
-             <router-link to='/sta-info/people/people-email'><el-menu-item index="1-3">非法注册邮箱</el-menu-item></router-link>
+             <template slot="title"><i class="el-icon-warning"></i>注册信息黑名单 </template> 
+             <router-link to='/sta-info/people/people-name'> <el-menu-item index="1-1">注册人姓名黑名单</el-menu-item></router-link>
+             <router-link to='/sta-info/people/people-tel'><el-menu-item index="1-2">注册人电话黑名单</el-menu-item></router-link>
+             <router-link to='/sta-info/people/people-email'><el-menu-item index="1-3">注册人邮箱黑名单</el-menu-item></router-link>
            </el-submenu>
        
            

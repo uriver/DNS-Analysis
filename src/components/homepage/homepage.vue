@@ -4,7 +4,7 @@
 		<div class="home-contant">
 			<div class="home-show">
 				<h1>非法域名挖掘与画像系统</h1>
-				<p>这是一段简短的介绍信息，大概有两句话大约有三十个字</p>
+				<p>评估域名性质，画像立体描述，挖掘非法域名，提供管控线索，展示整体趋势，让非法域名尽在掌控</p>
 				<router-link to='/model'><button class="home-button">域名评估</button></router-link>
 				<div></div>
 				<div class="show-fun" :class="[isPoint?'el-icon-arrow-down':'el-icon-arrow-up']" @click="showClick">
