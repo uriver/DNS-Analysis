@@ -30,13 +30,20 @@ import "echarts/theme/macarons.js";
 			return{
 		        sametype:'',
 		        samenum:'',
-		        seenx:'true'
+		        seenx:'true',
+		        urlData:"",
 			}
 		},
 		ready:function(){
 
 		},
     mounted () {
+    		var aUrl = document.URL;
+		    if(aUrl.indexOf("value=")!=-1){
+		        var str = aUrl.split("value=");
+		      }
+		      this.urlData = str[1];
+		      
 			function showsame(samedata) {
 	      	var sum = 0 ;
 	        var dataFir = [];
@@ -90,9 +97,9 @@ import "echarts/theme/macarons.js";
 		      	}
             //window.onresize = myChart.resize;
 						$.ajax({
-								url:"/static/all.json",
+								url:"http://172.29.152.3:8000/check?value="+this.urlData,
 								dataType:"json",
-								//async :false,
+								async :false,
 								type:'GET',
 								//date:{"name":123},
 								success:function (samedata) {

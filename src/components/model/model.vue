@@ -10,9 +10,11 @@
 				<router-view></router-view>
 			</div>
 			<div id="inp">
+			<form>
 		  		<el-input placeholder="请输入网址"  v-model="inputs">
 		    	<el-button slot="append" icon="search" @click="onSubmit">确定</el-button>
-		  	</el-input>
+		  		</el-input>
+		  	</form>
 			</div>
 		</div>
 	</main>
@@ -27,18 +29,19 @@
 		},
 		methods: {
       	onSubmit() {
-            $.ajax({
-		        url:"/static/all.json",
-		        data:this.inputs,
-		        async :false,
-		        type:'POST',
-		        success:function (samedata) {
+      		this.$router.push({ path: '/check?value='+this.inputs });
+      //       $.ajax({
+		    //     url:"/check?value="+this.inputs,
+		    //     data:this.inputs,
+		    //     async :false,
+		    //     type:'POST',
+		    //     success:function (samedata) {
 		            
-		        }.bind(this),
-		        error:function(){
-		            alert('发送数据失败！')
-		        },
-		    });
+		    //     }.bind(this),
+		    //     error:function(){
+		    //         alert('发送数据失败！')
+		    //     },
+		    // });
 		  }
       }
     }

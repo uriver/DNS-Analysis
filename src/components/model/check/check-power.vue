@@ -2,7 +2,7 @@
   <div id='checkpower'>
     <div v-if="Pow.seen == 'true'">
       <div class='tab1'>
-        <h3>权威网站检测结果</h3>
+        <h2>权威网站检测结果</h2>
       </div>
       <div class='tab2'>
         <p>{{Pow.dnsanay}}</p>
@@ -53,14 +53,25 @@
   export default{
     data(){
       return{
-        Pow:[]
+        Pow:[],
+        urlData:"",
       }
     },
-    created: function(){
+    mounted:function(){
+    var aUrl = document.URL;
+    if(aUrl.indexOf("value=")!=-1){
+        var str = aUrl.split("value=");
+      }
+      this.urlData = str[1];
+      this.getData();
+    },
+    methods:{
+      getData:function(){
       $.ajax({
-          url:"/static/all.json",
+          url:"http://172.29.152.3:8000/check?value="+this.urlData,
           dataType:"json",
           type:'GET',
+          async :false,
           success:function (data) {
               this.Pow=data.analysis[0];
           }.bind(this),
@@ -68,6 +79,7 @@
               alert('获取数据失败！')
           },
       });
+    }
     }
   }
 </script>

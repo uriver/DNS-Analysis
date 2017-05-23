@@ -19,16 +19,27 @@
 	export default{
 		data(){
 			return{
-				ipData: []
+				ipData: [],
+				urlData:''
 			}
 		},
 		mounted:function(){
-      		this.getCIP();
-    	},
+			this.test1();
+		},
 		methods:{
+			test1:function()
+			{
+				var aUrl = document.URL;
+				if(aUrl.indexOf("value=")!=-1){
+					var str = aUrl.split("value=");
+				}
+				this.urlData = str[1];
+				this.getCIP();
+			},
 			getCIP:function(){
 				$.ajax({
-		        url:"/static/all.json",
+				async: false,
+		        url:"http://172.29.152.3:8000/check?value="+this.urlData,
 		        dataType:"json",
 		        type:'GET',
 		        success:function (samedata) {

@@ -11,13 +11,21 @@
 
     export default{
       data () {
-        return{}
+        return{
+        	urlData:''
+        }
       },
         methods: {
         },
         mounted() {
+        	var aUrl = document.URL;
+		    if(aUrl.indexOf("value=")!=-1){
+		        var str = aUrl.split("value=");
+		      }
+		    this.urlData = str[1];
         	$.ajax({
-		        url:"/static/all.json",
+		        url:"http://172.29.152.3:8000/check?value="+this.urlData,
+		        async :false,
 		        dataType:"json",
 		        type:'GET',
 		        success:function (ajaxdata) {

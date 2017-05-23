@@ -2,7 +2,7 @@
 	<header>
 	<el-row>
 		<el-col :span="24">
-		<el-menu :default-active="activeIndex" :active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" router='true'>
+		<el-menu :default-active="activeIndex" :active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" router>
 			<el-menu-item index='/'>首页</el-menu-item>
 			<el-menu-item index='/sta-info/people/people-name'>非法域名统计信息</el-menu-item>
 			<el-menu-item index='/model'>域名非法评估模型</el-menu-item>
