@@ -74,6 +74,17 @@
         style="width:15%">
       </el-table-column>
     </el-table>
+    
+    <div class="block">
+      <el-pagination
+        @current-change="handleCurrentChange"
+        v-on:current-change="pageIndexChange"
+        :current-page="PageIndex"
+        :page-size="10"
+        layout="total,prev, pager, next, jumper"
+        :total="total">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -81,21 +92,66 @@
   export default{
   data () {
   return{
-  whoisAll: []
+  whoisAll: [],
+  total:1200
   }
   },
-  mounted(){
+
+  //分页功能
+  methods: {
+  handleCurrentChange(q) {
   $.ajax({
-  url:"http://172.29.152.3:8000/stainfo/whois/whoisall",
+  url:"http://172.29.152.3:8000/stainfo/whois/whoisall?value="+q,
   dataType:"json",
   type:'GET',
   success:function (result)
   {
-   //表格填充
-   var res=[];
-   var i = 0;
-   var len=result.whoisall.length;
-   for (i = 0; i < len; i++)
+  //表格填充
+  var res=[];
+  var i = 0;
+  var len=result.whoisall.length;
+  for (i = 0; i < len; i++)
+   {
+     res.push({
+        first:result.whoisall[i].first,
+        second:result.whoisall[i].second,
+        origin:result.whoisall[i].origin,
+        name:result.whoisall[i].name, 
+        tel:result.whoisall[i].tel,
+        email: result.whoisall[i].email,
+        signin:result.whoisall[i].signin,
+        duetime:result.whoisall[i].duetime,
+        update:result.whoisall[i].update,
+        servers:result.whoisall[i].servers,
+        inserttime :result.whoisall[i].inserttime,  
+        tld:result.whoisall[i].tld,
+        condition:result.whoisall[i].condition,
+        business:result.whoisall[i].business,
+        firm:result.whoisall[i].Firm,
+        domain:result.whoisall[i].domain,
+     })
+  }  
+  this.whoisAll=res;
+  }.bind(this),
+  error:function()
+  {
+  alert("访问服务器失败");
+  }
+  });
+  }
+  },
+  mounted(){
+  $.ajax({
+  url:"http://172.29.152.3:8000/stainfo/whois/whoisall?value=1",
+  dataType:"json",
+  type:'GET',
+  success:function (result)
+  {
+  //表格填充
+  var res=[];
+  var i = 0;
+  var len=result.whoisall.length;
+  for (i = 0; i < len; i++)
    {
      res.push({
         first:result.whoisall[i].first,
