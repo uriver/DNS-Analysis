@@ -71,7 +71,7 @@
   //AJAX
 
   $.ajax({
-  url:"http://172.29.152.3:8000/stainfo/whois/whoissign",
+  url:this.myURL+"/stainfo/whois/whoissign",
   dataType:"json",
   type:'GET',
   success:function (result)

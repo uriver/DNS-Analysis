@@ -27,7 +27,7 @@
   });
   window.onresize = surChart.resize;
   $.ajax({
-  url:"http://172.29.152.3:8000/stainfo/ip/ipsur",
+  url:this.myURL+"/stainfo/ip/ipsur",
   dataType:"json",
   type:'GET',
   success:function (result)

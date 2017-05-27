@@ -101,7 +101,7 @@
   methods: {
   handleCurrentChange(q) {
   $.ajax({
-  url:"http://172.29.152.3:8000/stainfo/whois/whoisall?value="+q,
+  url:this.myURL+"/stainfo/whois/whoisall?value="+q,
   dataType:"json",
   type:'GET',
   success:function (result)

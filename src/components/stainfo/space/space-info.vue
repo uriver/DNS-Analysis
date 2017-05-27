@@ -32,7 +32,7 @@
   methods: {
   handleCommand(value) {
   $.ajax({
-  url:"http://172.29.152.3:8000/stainfo/space/spaceinfo?value="+value,
+  url:this.myURL+"/stainfo/space/spaceinfo?value="+value,
   dataType:"json",
   type:'GET',
   success:function (result)

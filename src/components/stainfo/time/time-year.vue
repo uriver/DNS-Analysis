@@ -61,7 +61,7 @@
   methods: {
   handleCommand(value) {
   $.ajax({
-  url:"http://172.29.152.3:8000/stainfo/time/timeyear?value="+value,
+  url:this.myURL+"/stainfo/time/timeyear?value="+value,
   dataType:"json",
   type:'GET',
   success:function (result)

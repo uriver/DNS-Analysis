@@ -97,7 +97,7 @@ import "echarts/theme/macarons.js";
 		      	}
             //window.onresize = myChart.resize;
 						$.ajax({
-								url:"http://172.29.152.3:8000/check?value="+this.urlData,
+								url:this.myURL+"/check?value="+this.urlData,
 								dataType:"json",
 								async :false,
 								type:'GET',

@@ -39,7 +39,7 @@
 		methods:{
 			getIMG:function(){
 				$.ajax({
-		        url:"http://172.29.152.3:8000/check?value="+this.urlData,
+		        url:this.myURL+"/check?value="+this.urlData,
 		        dataType:"json",
 		        type:'GET',
 		        async :false,

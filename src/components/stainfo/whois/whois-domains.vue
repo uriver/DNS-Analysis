@@ -67,7 +67,7 @@
 
   //ajax获取信息填充到echarts里面
   $.ajax({
-  url:"http://172.29.152.3:8000/stainfo/whois/whoisdomains",
+  url:this.myURL+"/stainfo/whois/whoisdomains",
   dataType:"json",
   type:'GET',
   success:function (result)

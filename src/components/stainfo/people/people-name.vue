@@ -67,7 +67,7 @@
   methods: {
   handleCurrentChange(q) {
   $.ajax({
-  url:"http://172.29.152.3:8000/stainfo/people/peoplename?value="+ q ,
+  url:this.myURL+"/stainfo/people/peoplename?value="+ q ,
   dataType:"json",
   type:'GET',
   success:function (result)

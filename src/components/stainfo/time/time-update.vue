@@ -29,7 +29,7 @@
 
   //ajax后台处理数据
   $.ajax({
-  url:"http://172.29.152.3:8000/stainfo/time/updatefrequency",
+  url:this.myURL+"/stainfo/time/updatefrequency",
   dataType:"json",
   type:'GET',
   success:function (result)
