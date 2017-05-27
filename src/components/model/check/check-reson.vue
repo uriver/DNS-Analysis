@@ -1,6 +1,6 @@
 <template>
   <div id='checkreson'>
-		<h2>拓扑结构</h2>
+		<h1 style="font-weight: bold;">拓扑结构</h1>
   </div>
 </template>
 <script>

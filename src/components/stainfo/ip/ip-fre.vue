@@ -27,7 +27,7 @@
                 xAxis: {
                     data: ["Online","Offline"]
                 },
-                yAxis: {},
+                yAxis: {name:'数量/个'},
                 series: [{
                     name: '状态',
                     type: 'bar',

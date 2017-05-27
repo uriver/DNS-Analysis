@@ -1,13 +1,12 @@
 <template>
   <div>
     <!--核心的表格内容-->
-    <h1 class="head">非法域名的whois信息概览</h1>
+    <h1 class="head">恶意域名的whois信息概览</h1>
     <el-table
       :data="whoisAll"
       height="700"
       style=":width:100%"
       >
-     
       <el-table-column type="expand">
         <template scope="props">
           <el-form label-position="left" inline="" class="demo-table-expand">
@@ -20,17 +19,17 @@
             <el-form-item label="原始whois信息">
               <span>{{ props.row.origin }}</span>
             </el-form-item>
-            <el-form-item label="注册者">
-              <span>{{ props.row.name }}</span>
+            <el-form-item label="域名状态">
+              <span>{{ props.row.condition }}</span>
             </el-form-item>
-            <el-form-item label="注册者电话">
-              <span>{{ props.row.tel }}</span>
+            <el-form-item label="注册商">
+              <span>{{ props.row.business }}</span>
             </el-form-item>
-            <el-form-item label="注册者邮箱">
-              <span>{{ props.row.email }}</span>
+            <el-form-item label="注册者公司">
+              <span>{{ props.row.firm }}</span>
             </el-form-item>
-            <el-form-item label="whois注册时间">
-              <span>{{ props.row.signin }}</span>
+            <el-form-item label="顶级域">
+              <span>{{ props.row.tld }}</span>
             </el-form-item>
             <el-form-item label="whois到期时间">
               <span>{{ props.row.duetime }}</span>
@@ -47,32 +46,33 @@
           </el-form>
         </template>
       </el-table-column>
-      
+
       <el-table-column
-        prop="tld"
-        label="顶级域"
-        width="120">
+     prop="domain"
+     label="域名"
+     style="width:10%">
       </el-table-column>
       <el-table-column
-      prop="condition"
-      label="域名状态"
-      style="width:5%">
+      prop="name"
+      label="注册者"
+      width="140">
       </el-table-column>
       <el-table-column
-        prop="business"
-        label="注册商"
+        prop="tel"
+        label="注册电话"
         style="width:45%">
       </el-table-column>
       <el-table-column
-        prop="firm"
-        label="注册公司"
+        prop="email"
+        label="注册邮箱"
         style="width:15%">
       </el-table-column>
       <el-table-column
-        prop="domain"
-        label="域名"
-        style="width:15%">
+        prop="signin"
+        label="Whois注册时间"
+        style="width;10%">
       </el-table-column>
+      
     </el-table>
     
     <div class="block">
@@ -198,7 +198,7 @@
   .demo-table-expand .el-form-item {
   margin-right: 0;
   margin-bottom: 0;
-  width:30%
+  width:50%
   }
 
 

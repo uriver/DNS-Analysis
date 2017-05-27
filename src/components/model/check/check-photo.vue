@@ -1,7 +1,7 @@
 <template>
 <div v-if= "Mes.seen == 'true'" >
   <div id='checkphoto'>
-  		<h2>页面快照</h2>
+  		<h1 style="font-weight: bold;">页面快照</h1>
   		<div class='tab1'>
   			<h3>网页标题</h3>
   		</div>

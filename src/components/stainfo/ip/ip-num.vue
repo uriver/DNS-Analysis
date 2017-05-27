@@ -1,8 +1,8 @@
 <template>
-	<div>
-		<div id="IP-num1"  v-show="ifShow">
-		</div>
-    <div v-show="ifShow == false" class="ip-laoding">
+  <div>
+    <div id="IP-num1"  v-if="ifShow">
+    </div>
+    <div v-if="ifShow == false" class="ip-laoding">
       <div class="spinner">
       <div class="spinner-container container1">
         <div class="circle1"></div>
@@ -24,10 +24,10 @@
       </div>
     </div>
     </div>
-		<div class="IP-line"></div>
-		<div id="IP-num2" v-show="ifShow">
-		</div>
-      <div v-show="ifShow == false" class="ip-laoding">
+    <div class="IP-line"></div>
+    <div id="IP-num2" v-if="ifShow">
+    </div>
+      <div v-if="ifShow == false" class="ip-laoding">
       <div class="spinner">
       <div class="spinner-container container1">
         <div class="circle1"></div>
@@ -49,25 +49,29 @@
       </div>
     </div>
     </div>
-		<div style="clear:both"></div>
-	</div>
-	
+    <div style="clear:both"></div>
+  </div>
+  
 </template>
 
 <script>
-	import echarts from "echarts/lib/echarts";
-	import "echarts/theme/macarons.js";
-	export default{
-		data () {
-			return{
-        ifShow:false
-			}
-		},
-    mounted(){
-      this.runDemo();
+  import echarts from "echarts/lib/echarts";
+  import "echarts/theme/macarons.js";
+  export default{
+    data () {
+      return{
+        ifShow:false,
+        result:{}
+      }
     },
-		methods:{
-      runDemo:function(){
+    mounted() {
+        this.getData();
+    },
+    updated(){
+        this.runDemo();
+    },
+    methods:{
+      getData:function(){
         var that = this;
         $. ajax({
         url:this.myURL+"/stainfo/ip/ipnum",
@@ -75,12 +79,63 @@
         type:"GET",
         success:function(result)
         {
-        that.ifShow = true;
+          that.ifShow = true;
+          that.result = result;
+        }
+        //AJAX
+        })
+      },
+      runDemo:function(){
+        var result = this.result;
         var yValue=[];
         var xValue=["Online","Offline"]
         var i=0;
         yValue[0]=result.Offline;
         yValue[1]=result.Online;
+
+        var num1Chart = echarts.init(document.getElementById('IP-num1'),'macarons');
+        var num2Chart = echarts.init(document.getElementById('IP-num2'),'macarons');
+        num1Chart.setOption({
+            title: { text: '当前恶意域名在线IP与离线IP数量显示', x:'center' },
+            tooltip: {},
+            xAxis: {
+                data: ["Online","Offline"]
+            },
+            yAxis: {},
+            series: [{
+                name: '状态',
+                type: 'bar',
+                barWidth : 80,
+                data: []
+            }]
+        });
+
+        num2Chart.setOption({
+            title : {
+          text: '比例视图',
+          x:'center'
+      },
+      tooltip : {
+          trigger: 'item',
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+      },
+      legend: {
+      x : 'center',
+      y : 'bottom',
+      data:["Online","Offline"]
+      },
+
+      series : [
+      {
+      name:'比例展示',
+      type:'pie',
+      radius : '55%',
+      center : ['50%', '50%'],
+      // roseType : 'radius',
+      data:[]
+      }
+      ]
+      })
 
         num1Chart.setOption({
         series: [{
@@ -88,6 +143,7 @@
         data: yValue
         }]
         });
+
         num2Chart.setOption({
         series : [{
         data:(function(){
@@ -103,84 +159,35 @@
                              })()
                       }]   
             })
-
         //SUCCEESS
-        }
-        //AJAX
-        })
 
-        var num1Chart = echarts.init(document.getElementById('IP-num1'),'macarons');
-            num1Chart.setOption({
-                title: { text: '当前恶意域名在线IP与离线IP数量显示', x:'center' },
-                tooltip: {},
-                xAxis: {
-                    data: ["Online","Offline"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '状态',
-                    type: 'bar',
-                    barWidth : 80,
-                    data: []
-                }]
-            });
-
-            var num2Chart = echarts.init(document.getElementById('IP-num2'),'macarons');
-            num2Chart.setOption({
-                title : {
-              text: '比例视图',
-              x:'center'
-          },
-          tooltip : {
-              trigger: 'item',
-              formatter: "{a} <br/>{b} : {c} ({d}%)"
-  },
-  legend: {
-  x : 'center',
-  y : 'bottom',
-  data:["Online","Offline"]
-  },
-
-  series : [
-  {
-  name:'比例展示',
-  type:'pie',
-  radius : '55%',
-  center : ['50%', '50%'],
-  // roseType : 'radius',
-  data:[]
-  }
-  ]
-  })
-  window.onresize = num1Chart.resize;
-  }
-  }
+         window.onresize = num1Chart.resize;
+      }
+   }
   }
 </script>
 
 <style>
-	#IP-num1{
-		margin-top: 80px;
-		width: 52%;
-		height: 600px;
-		float: left;
-    border: 1px solid black;
-	}
-	.IP-line{
-		height: 600px;
-		float: left;
-		margin-left: 30px;
-		width: 5px;
-		margin-top: 80px;
-		border-left: 1px solid #cccccc;
-	}
-	#IP-num2{
-		margin-top: 80px;
-		width: 42%;
-		height: 600px;
-		float: left;
-    border: 1px solid black;
-	}
+  #IP-num1{
+    margin-top: 80px;
+    width: 52%;
+    height: 600px;
+    float: left;
+  }
+  .IP-line{
+    height: 600px;
+    float: left;
+    margin-left: 30px;
+    width: 5px;
+    margin-top: 80px;
+    border-left: 1px solid #cccccc;
+  }
+  #IP-num2{
+    margin-top: 80px;
+    width: 42%;
+    height: 600px;
+    float: left;
+  }
   .spinner {
   margin: 240px auto;
   width: 200px;

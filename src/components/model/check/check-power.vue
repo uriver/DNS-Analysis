@@ -2,7 +2,7 @@
   <div id='checkpower'>
     <div v-if="Pow.seen == 'true'">
       <div class='tab1'>
-        <h2>权威网站检测结果</h2>
+        <h3>权威网站检测结果</h3>
       </div>
       <div class='tab2'>
         <p>{{Pow.dnsanay}}</p>

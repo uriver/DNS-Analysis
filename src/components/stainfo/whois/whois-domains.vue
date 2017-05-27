@@ -1,62 +1,60 @@
 <template>
 	<div>
 		<div id="signChart"></div>
-		<div class="whois-line"></div>
 		<div id="signPlan"></div>
 	</div>
 </template>
 
 <script>
-	import echarts from "echarts/lib/echarts";
-	import "echarts/theme/macarons.js";
+  import echarts from "echarts/lib/echarts";
+  import "echarts/theme/macarons.js";
 
-	export default{
-		mounted () {
-			var signChart = echarts.init(document.getElementById('signChart'),'macarons');
-      signChart.setOption({
-      title: { text: '非法域名顶级域分布图', x:'center' },
-      tooltip: {},
-      xAxis: {
-          //data: ["A","B","C","D","E","F","G","H","I","J"] 
-            data:[],
-            axisLabel:{
-              interval:0,  //横轴的信息全部显示
-              rotate: -30  //横轴信息倾斜30度显示 
-              }
-           },
-           yAxis: {},
-           series: [{
-                 name: '数量',
-                 type: 'bar',
-                 barWidth : 40,
-              // data: [180, 170, 98, 96, 92, 87, 87, 64, 57, 49,]
-                 data:[]
-                }]
-            });
+  export default{
+  mounted () {
+  var signChart = echarts.init(document.getElementById('signChart'),'macarons');
+  signChart.setOption({
+  title: { text: '非法域名所属注册商', x:'center' },
+  tooltip: {},
+  xAxis: {
+  //data: ["A","B","C","D","E","F","G","H","I","J"]
+  data:[],
+  name:'恶意域名',
+  axisLabel:{
+  interval:0,  //横轴的信息全部显示
+  rotate: -30  //横轴信息倾斜30度显示
+  }
+  },
+  yAxis: {name:'数量/个'},
+  series: [{
+  name: '数量',
+  type: 'bar',
+  barWidth : 40,
+  // data: [180, 170, 98, 96, 92, 87, 87, 64, 57, 49,]
+  data:[]
+  }]
+  });
 
-					var signPlan = echarts.init(document.getElementById('signPlan'),'macarons');
-          signPlan.setOption({
-            	  title : {
-			        text: '非法域名顶级域分布图',
-			        x:'center'
-			    },
-			    tooltip : {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b} : {c} ({d}%)"
+  var signPlan = echarts.init(document.getElementById('signPlan'),'macarons');
+  signPlan.setOption({
+  title : {
+  x:'center'
+  },
+  tooltip : {
+  trigger: 'item',
+  formatter: "{a} <br/>{b} : {c} ({d}%)"
   },
   legend: {
-  x : 'center',
-  y : 'bottom',
+  orient : 'vertical',
+  x : 'right',
   data: []
   },
   series : [
   {
-  name:'非法域名顶级域分布图',
   type:'pie',
   radius : '70%',
   center : ['50%', '50%'],
   label:{
-  normal:{show:false},
+  normal:{show:true},
   emphasis:{show:true}
   },
   data:[]
@@ -121,22 +119,16 @@
 
 <style>
 #signChart{
-	width: 50%;
-	height: 700px;
-	margin-top: 20px;
-	margin-left: 10px;
-	float: left;
+  width: 95%;
+  height: 500px;
+  margin-left: 20px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #cccccc;
+
 }
-	.whois-line{
-		height: 700px;
-		margin-top: 20px;
-		margin-left: 20px;
-		width: 1px;
-		border-left: 1px solid #cccccc;
-		float: left;
-	}
 	#signPlan{
-		width: 42%;
+		width: 50%;
 		height: 700px;
 		margin-top: 20px;
 		margin-left: 20px;

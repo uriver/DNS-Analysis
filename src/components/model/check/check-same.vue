@@ -1,6 +1,6 @@
 <template>
 	<div id='checksame' v-if="seenx == 'true'">
-		<h2>近期同类型事件分析</h2>
+		<h1 style="font-weight: bold;">近期同类型事件分析</h1>
     <div class='tab1'>
       <h3>非法类型</h3>
     </div>

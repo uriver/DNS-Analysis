@@ -24,7 +24,7 @@
   rotate:-15 //-15度角倾斜显示
   }
   },
-  yAxis: {},
+  yAxis: {name:'数量/个'},
   series: [{
   name: '数量',
   type: 'bar',
@@ -36,7 +36,6 @@
   var signPlan = echarts.init(document.getElementById('signPlan'),'macarons');
   signPlan.setOption({
   title : {
-     text: '非法域名注册商分布图',
      subtext:' ',
      x:'center'
       },
@@ -45,8 +44,7 @@
   formatter: "{a} <br/>{b} : {c} ({d}%)"
   },
   legend: {
-  x : 'center',
-  y : 'bottom',
+  x : 'right',
   data:[]
   },
   series : [
@@ -55,7 +53,7 @@
   type:'pie',
   radius : '70%',
   label: {
-  normal: {show: false},
+  normal: {show: true},
   emphasis: {show: true }
   },
   center : ['50%', '50%'],
@@ -89,7 +87,7 @@
     ({
        xAxis:{
             data: xValue,
-            name:'非法注册人'
+            name:'恶意注册人'
             },
        series: [{
             data:yValue
@@ -127,19 +125,10 @@
 	margin-left: 10px;
 	float: left;
 }
-	.whois-line{
-		height: 700px;
-		margin-top: 20px;
-		margin-left: 20px;
-		width: 1px;
-		border-left: 1px solid #cccccc;
-		float: left;
-	}
 	#signPlan{
-		width: 42%;
+		width: 50%;
 		height: 700px;
-		margin-top: 20px;
-		margin-left: 20px;
+		margin: 30px auto;
 		float:left ;
 	}
 </style>

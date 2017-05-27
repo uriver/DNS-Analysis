@@ -1,6 +1,6 @@
 <template>
 	<div id='checkip'>
-		<h2>ip信息</h2>
+		<h1 style="font-weight: bold;">ip信息</h1>
     <el-table
 		 :data="ipData"
 		 style="width: 100%">

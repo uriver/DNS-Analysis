@@ -1,6 +1,6 @@
 <template>
 	<div id='checkwhois'>
-		<h2>域名WHOIS信息</h2>
+		<h1 style="font-weight: bold;">域名WHOIS信息</h1>
     <el-table
 		 :data="whoisData"
 		 style="width: 100%">

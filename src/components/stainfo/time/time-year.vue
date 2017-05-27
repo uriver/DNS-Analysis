@@ -52,6 +52,26 @@
   }, {
   value: '2011',
   label: '2011'
+  },
+  {
+  value: '2012',
+  label: '2012'
+  },
+  {
+  value: '2013',
+  label: '2013'
+  },
+  {
+  value: '2014',
+  label: '2014'
+  },
+  {
+  value: '2015',
+  label: '2015'
+  },
+  {
+  value: '2016',
+  label: '2016'
   }],
   value:''
   }
@@ -66,17 +86,17 @@
   type:'GET',
   success:function (result)
   {
-   //返回value值作为饼图和最上面的大标题的题目
+  //返回value值作为饼图和最上面的大标题的题目
   this.num=value;
-   var year=[];
-   var end=[];
-   var cre=[];
-   var cValue=[];
-   var eValue=[];
-   var i=0;
-   var len=result.e_date.length;
-   //12个月的两个y值
-   for(i=0;i< 12;i++)
+  var year=[];
+  var end=[];
+  var cre=[];
+  var cValue=[];
+  var eValue=[];
+  var i=0;
+  var len=result.e_date.length;
+  //12个月的两个y值
+  for(i=0;i< 12;i++)
    {
      cValue[i]=result.year[i].cValue;
      eValue[i]=result.year[i].eValue;

@@ -12,7 +12,7 @@
   mounted () {
   var upChart = echarts.init(document.getElementById('upChart'),'macarons');
   upChart.setOption({
-  title: { text: 'Whois信息更新时间频率图', x:'center' },
+  title: { text: '恶意域名总体生存时间', x:'center' },
   tooltip: {},
   xAxis: {
   name:'天',
@@ -22,8 +22,7 @@
   },
   data: []
   },
-  yAxis: {
-  name:'数量/个'},
+  yAxis: {name:'数量/个'},
   series: [{
   name: '数量',
   type: 'bar',
@@ -35,7 +34,7 @@
 
   //ajax后台处理数据
   $.ajax({
-  url:this.myURL+"/stainfo/time/updatefrequency",
+  url:this.myURL+"/stainfo/time/allexsit",
   dataType:"json",
   type:'GET',
   success:function (result)

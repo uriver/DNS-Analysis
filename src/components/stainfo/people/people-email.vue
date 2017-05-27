@@ -1,8 +1,6 @@
 <template>
   <div>
     <div class="main-right">
-      <!--      <transition name="fade">
-      -->
       <div class="con-underline">
         <div class="dns-num">
           <span>当前非法注册邮箱总量为:</span>
@@ -18,15 +16,18 @@
     style="width: 100%">
       <el-table-column
         prop="name"
-        label="非法注册人姓名"
-        style=" width:40%"></el-table-column>
+        label="非法注册邮箱"
+        style=" width:40%">
+      </el-table-column>
       <el-table-column
         prop="baddomain"
         label="非法注册域名数量"
-        style=" width:30%"></el-table-column>
+        style=" width:30%">
+      </el-table-column>
       <el-table-column
         prop="Alldomain"
-        label="注册域名总数量"></el-table-column>
+        label="注册域名总数量">
+      </el-table-column>
     </el-table>
     <div class="block">
       <el-pagination
@@ -35,7 +36,8 @@
         :current-page="PageIndex"
         :page-size="10"
         layout="total, prev, pager, next, jumper"
-        :total="1000"></el-pagination>
+        :total="1000">
+      </el-pagination>
     </div>
   </div>
 
@@ -82,7 +84,7 @@
      res.push({
          Alldomain:result.info[i].Alldomain,  //善意的数量
          name: result.info[i].name,
-         baddomain:result.info[i].baddomain   //非法的数量 
+         baddomain:result.info[i].baddomain   //恶意的数量 
      }), 
       xValue[i]=result.info[i].name;
       kind[i]=result.info[i].Alldomain-result.info[i].baddomain;
@@ -98,11 +100,11 @@ yearChart.setOption({
   }],
  series: [
 {
-  name:'非法域名数量',
+  name:'恶意域名数量',
   data:bad
  },
 {
-      name:'善意域名数量',
+      name:'正常域名数量',
       data:kind
  },
  {
@@ -134,14 +136,14 @@ yearChart.setOption({
   }
   },
   legend: {
-  data:['趋势走向','善意域名数量','非法域名数量'],
+  data:['趋势走向','正常域名数量','恶意域名数量'],
   align: 'left',
   left: 20
   },
   xAxis: [
   {
   type: 'category',
-  name:'姓名',
+  name:'邮箱',
   data: [],
   axisPointer: {
   type: 'shadow'
@@ -157,23 +159,20 @@ yearChart.setOption({
   {
   type: 'value',
   name: '域名数量/个',
-  min: 0,
-  max: 100,
-  interval:10,
   axisLabel: {
   formatter: '{value} '
   }
   }],
 
   series: [{
-  name:'非法域名数量',
+  name:'恶意域名数量',
   type:'bar',
   stack: '域名数量',
   data:[],
   itemStyle:{
   normal:{color:'#08a9f2'}
   }},
-  {name:'善意域名数量',
+  {name:'正常域名数量',
   type:'bar',
   stack: '域名数量',
   data:[],
@@ -211,7 +210,7 @@ yearChart.setOption({
      res.push({
          Alldomain:result.info[i].Alldomain,  //善意的数量
          name: result.info[i].name,
-         baddomain:result.info[i].baddomain   //非法的数量 
+         baddomain:result.info[i].baddomain   //恶意的数量 
      }), 
       xValue[i]=result.info[i].name;
       kind[i]=result.info[i].Alldomain-result.info[i].baddomain;
@@ -227,11 +226,11 @@ yearChart.setOption({
   }],
  series: [
 {
-  name:'非法域名数量',
+  name:'恶意域名数量',
   data:bad
  },
 {
-      name:'善意域名数量',
+      name:'正常域名数量',
       data:kind
  },
  {
@@ -261,17 +260,7 @@ yearChart.setOption({
   margin-bottom: 20px;
   border-bottom: 1px solid #cccccc;
   }
-  #left{
-  width: 95%;
-  height: 300px;
-  margin-left: 40px;
-  }
-  .main-right{
-  -webkit-box-flex:5;
-  -ms-flex:5.5;
-  flex:5;
-  padding: 20px 40px;
-  }
+ 
   .con-underline{
   border-bottom: 1px solid #CCCCCC;
   height: 40px;

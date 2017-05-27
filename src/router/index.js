@@ -19,6 +19,7 @@ import InfoName from  '@/components/stainfo/people/people-name'
 import InfoTel from '@/components/stainfo/people/people-tel'
 import InfoEmail from '@/components/stainfo/people/people-email'
 import Check from '@/components/model/check/check'
+import InfoTimeSur from '@/components/stainfo/time/time-sur'  
 Vue.use(Router)
 
 export default new Router({
@@ -85,7 +86,11 @@ export default new Router({
         {
             path:'people/people-email',
             component:InfoEmail
-        }
+        },
+        {
+            path:'time/time-sur',
+            component:InfoTimeSur
+        },
       
       ]
     },

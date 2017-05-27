@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="year-data">
-            <div class="year-font">请选择地理位置信息源：</div>
+            <div class="year-font">请选择定位的维度：</div>
             <el-select v-model="value" placeholder="请选择" style="margin-left:160px;" @change="handleCommand">
                 <el-option  
                   v-for="item in years"
@@ -10,7 +10,7 @@
                 </el-option>
           </el-select>
         </div>
-    <h1 class="head">非法域名的whois信息概览</h1>
+    <h1 class="head">恶意域名的whois信息概览</h1>
     <div id="unknown">
       <span></span>
       <span class="num-class">{{unknown}}</span>
@@ -37,8 +37,8 @@
   type:'GET',
   success:function (result)
   { //返回的两个值
-  this.unknown="未知地理信息的非法域名数量为:"+result.unknow;
-  this.forein="海外的非法域名数量为:"+result.foreign;
+  this.unknown="未知地理信息的恶意域名数量为:"+result.unknow;
+  this.forein="海外的恶意域名数量为:"+result.foreign;
   //地图填充
   var xValue=[];
   var yValue=[];
@@ -52,7 +52,7 @@
 
   SpaMap.setOption({
   series: [{
-  name: '非法域名',
+  name: '恶意域名',
   data:(function(){
   var res=[];
   for (i = 0; i < len; i++)
@@ -83,19 +83,19 @@
 
   years:[{
   value: '1',
-  label: '域名注册人地理位置'
+  label: '按照whois信息查询'
   }, {
   value: '2',
-  label: '注册人邮编地理信息'
+  label: '按照邮编查询'
   }, {
   value: '3',
-  label: '注册人电话地理信息'
+  label: '按照IP地址查询'
   }, {
   value: '4',
-  label: 'IP解析地理信息'
+  label: '按照电话查询'
   }, {
   value: '5',
-  label: 'ICP地理位置信息'
+  label: '按照icp地址查询'
   }],
   value:''
   }
@@ -110,7 +110,7 @@
   legend: {
   orient: 'vertical',
   left: 'left',
-  data:['非法域名数量']
+  data:['恶意域名数量']
   },
   visualMap: {
   min: 0,
@@ -121,7 +121,7 @@
   },
 
   series: [{
-  name: '非法域名',
+  name: '恶意域名',
   type: 'map',
   layoutCenter: ['50%', '50%'],
   layoutSize: 900,

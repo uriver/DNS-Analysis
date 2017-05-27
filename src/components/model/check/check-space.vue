@@ -1,6 +1,6 @@
 <template>
   <div id='checkspace'>
-		<h2>位置信息</h2>
+	<h1 style="font-weight: bold;">位置信息</h1>
     <div id="checkmap"></div>
   </div>
 </template>
@@ -50,18 +50,18 @@
             let CheckMap = echarts.init(document.getElementById('checkmap'));
             CheckMap.setOption({
 						    tooltip: {},
-						    visualMap: {
-						        min: 0,
-						        max: 1500,
-						        left: 'left',
-						        top: 'bottom',
-						        text: ['High','Low'],
-						        seriesIndex: [1],
-						        inRange: {
-						            color: ['#e0ffff', '#006edd']
-						        },
-						        calculable : true
-						    },
+						    // visualMap: {
+						    //     min: 0,
+						    //     max: 1500,
+						    //     left: 'left',
+						    //     top: 'bottom',
+						    //     text: ['High','Low'],
+						    //     seriesIndex: [1],
+						    //     inRange: {
+						    //         color: ['#e0ffff', '#006edd']
+						    //     },
+						    //     calculable : true
+						    // },
 						    geo: {
 						        map: 'china',
 						        roam: true,
@@ -106,50 +106,49 @@
 						           },
 						           itemStyle: {
 						               normal: {
-						                    color: '#F06C00'
+						                    color: 'red'
 						               }
 						           }
 						        },
 						        {
-						            name: 'categoryA',
 						            type: 'map',
 						            geoIndex: 0,
 						            // tooltip: {show: false},
 						            data:[
-						                {name: '北京', value: randomValue()},
-						                {name: '天津', value: randomValue()},
-						                {name: '上海', value: randomValue()},
-						                {name: '重庆', value: randomValue()},
-						                {name: '河北', value: randomValue()},
-						                {name: '河南', value: randomValue()},
-						                {name: '云南', value: randomValue()},
-						                {name: '辽宁', value: randomValue()},
-						                {name: '黑龙江', value: randomValue()},
-						                {name: '湖南', value: randomValue()},
-						                {name: '安徽', value: randomValue()},
-						                {name: '山东', value: randomValue()},
-						                {name: '新疆', value: randomValue()},
-						                {name: '江苏', value: randomValue()},
-						                {name: '浙江', value: randomValue()},
-						                {name: '江西', value: randomValue()},
-						                {name: '湖北', value: randomValue()},
-						                {name: '广西', value: randomValue()},
-						                {name: '甘肃', value: randomValue()},
-						                {name: '山西', value: randomValue()},
-						                {name: '内蒙古', value: randomValue()},
-						                {name: '陕西', value: randomValue()},
-						                {name: '吉林', value: randomValue()},
-						                {name: '福建', value: randomValue()},
-						                {name: '贵州', value: randomValue()},
-						                {name: '广东', value: randomValue()},
-						                {name: '青海', value: randomValue()},
-						                {name: '西藏', value: randomValue()},
-						                {name: '四川', value: randomValue()},
-						                {name: '宁夏', value: randomValue()},
-						                {name: '海南', value: randomValue()},
-						                {name: '台湾', value: randomValue()},
-						                {name: '香港', value: randomValue()},
-						                {name: '澳门', value: randomValue()}
+						                {name: '北京'},
+						                {name: '天津'},
+						                {name: '上海'},
+						                {name: '重庆'},
+						                {name: '河北'},
+						                {name: '河南'},
+						                {name: '云南'},
+						                {name: '辽宁'},
+						                {name: '黑龙江'},
+						                {name: '湖南'},
+						                {name: '安徽'},
+						                {name: '山东'},
+						                {name: '新疆'},
+						                {name: '江苏'},
+						                {name: '浙江'},
+						                {name: '江西'},
+						                {name: '湖北'},
+						                {name: '广西'},
+						                {name: '甘肃'},
+						                {name: '山西'},
+						                {name: '内蒙古'},
+						                {name: '陕西'},
+						                {name: '吉林'},
+						                {name: '福建'},
+						                {name: '贵州'},
+						                {name: '广东'},
+						                {name: '青海'},
+						                {name: '西藏'},
+						                {name: '四川'},
+						                {name: '宁夏'},
+						                {name: '海南'},
+						                {name: '台湾'},
+						                {name: '香港'},
+						                {name: '澳门'}
 						            ]
 						        }
 						    ]

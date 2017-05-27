@@ -11,7 +11,7 @@
 			</div>
 			<div id="inp">
 			<form>
-		  		<el-input placeholder="请输入网址"  v-model="inputs">
+		  		<el-input placeholder="请输入域名"  v-model="inputs">
 		    	<el-button slot="append" icon="search" @click="onSubmit">确定</el-button>
 		  		</el-input>
 		  	</form>
@@ -27,21 +27,20 @@
 				dnsnum:3000
 			}
 		},
+		mounted(){
+		$.ajax({
+	        url:this.myURL+"/model",
+	        dataType:"json",
+	        type:'GET',
+	        success:function (result)
+	        {
+	          that.dnsnum = result.num;
+	         }
+	      });
+		},
 		methods: {
-      	onSubmit() {
+      	onSubmit:function() {
       		this.$router.push({ path: '/check?value='+this.inputs });
-      //       $.ajax({
-		    //     url:"/check?value="+this.inputs,
-		    //     data:this.inputs,
-		    //     async :false,
-		    //     type:'POST',
-		    //     success:function (samedata) {
-		            
-		    //     }.bind(this),
-		    //     error:function(){
-		    //         alert('发送数据失败！')
-		    //     },
-		    // });
 		  }
       }
     }
