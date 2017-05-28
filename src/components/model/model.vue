@@ -10,6 +10,9 @@
 				<router-view></router-view>
 			</div>
 			<div id="inp">
+			<div class="search-logo">
+				<img src="../../assets/slogo.png" height="125" width="210">
+			</div>
 			<form>
 		  		<el-input placeholder="请输入域名"  v-model="inputs">
 		    	<el-button slot="append" icon="search" @click="onSubmit">确定</el-button>
@@ -52,6 +55,11 @@
 	height: 20%;
 	margin: auto auto;
 	margin-top: 15%;
+	text-align: center;
+}
+.search-logo{
+	margin-top: -145px;
+	margin-bottom: 20px;
 }
 #model-container{
 	border: solid 20px #E9ECF1;
