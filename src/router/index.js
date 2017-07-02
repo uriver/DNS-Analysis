@@ -20,6 +20,7 @@ import InfoTel from '@/components/stainfo/people/people-tel'
 import InfoEmail from '@/components/stainfo/people/people-email'
 import Check from '@/components/model/check/check'
 import InfoTimeSur from '@/components/stainfo/time/time-sur'  
+import NewItem from '@/components/stainfo/new/newItem' 
 Vue.use(Router)
 
 export default new Router({
@@ -90,7 +91,10 @@ export default new Router({
         {
             path:'time/time-sur',
             component:InfoTimeSur
-        },
+        },{
+          path: 'new/new-item',
+          component: NewItem
+        }
       
       ]
     },

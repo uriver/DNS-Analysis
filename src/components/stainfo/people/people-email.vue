@@ -66,8 +66,9 @@
   methods: {
   handleCurrentChange(q) {
   $.ajax({
-  url:this.myURL+"/stainfo/people/peopleemail?value="+ q ,
+  url:this.myURL+"/stainfo/people/peopleemail",
   dataType:"json",
+  data:{"value":q},
   type:'GET',
   success:function (result)
   { //原因：全局变量绑定,显示顶端的数字

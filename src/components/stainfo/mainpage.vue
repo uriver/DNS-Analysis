@@ -34,6 +34,8 @@
 			        <router-link to='/sta-info/ip/ip-sur'><el-menu-item index="5-2">恶意域名IP更换频率图</el-menu-item></router-link>
 			        <!--router-link to='/sta-info/ip-fre'><el-menu-item index="6-3">恶意域名IP更换频率图</el-menu-item></router-link-->
 		        </el-submenu>
+
+            <router-link to='/sta-info/new/new-item'><el-menu-item index="6"><i class="el-icon-setting"></i>新增地图展示</el-menu-item></router-link>
            
 		    </el-menu>
     	</div>

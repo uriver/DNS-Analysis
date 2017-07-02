@@ -31,49 +31,49 @@
   //处理选项的变化将改变后的值传送到url中作为参数进行查询
   methods: {
   handleCommand(value) {
-  $.ajax({
-  url:this.myURL+"/stainfo/space/spaceinfo?value="+value,
-  dataType:"json",
-  type:'GET',
-  success:function (result)
-  { //返回的两个值
-  this.unknown="未知地理信息的恶意域名数量为:"+result.unknow;
-  this.forein="海外的恶意域名数量为:"+result.foreign;
-  //地图填充
-  var xValue=[];
-  var yValue=[];
-  var i=0;
-  var len=result.info.length;
-  for(i=0;i < len;i++)
-    {
-      xValue[i]=result.info[i].name;
-      yValue[i]=result.info[i].value;
-    }
+    $.ajax({
+      url:this.myURL+"/stainfo/space/spaceinfo?value="+value,
+      dataType:"json",
+      type:'GET',
+      success:function (result)
+      { //返回的两个值
+      this.unknown="未知地理信息的恶意域名数量为:"+result.unknow;
+      this.forein="海外的恶意域名数量为:"+result.foreign;
+      //地图填充
+      var xValue=[];
+      var yValue=[];
+      var i=0;
+      var len=result.info.length;
+      for(i=0;i < len;i++)
+        {
+          xValue[i]=result.info[i].name;
+          yValue[i]=result.info[i].value;
+        }
 
-  SpaMap.setOption({
-  series: [{
-  name: '恶意域名',
-  data:(function(){
-  var res=[];
-  for (i = 0; i < len; i++)
-                       {
-                          res.push({
-                           name:xValue[i],
-                           value:yValue[i]
-                        });  
-                       }
-                       return res;
-                       })()
-          }]
-  })
-  }.bind(this),
+      SpaMap.setOption({
+        series: [{
+          name: '恶意域名',
+          data:(function(){
+          var res=[];
+          for (i = 0; i < len; i++)
+           {
+              res.push({
+               name:xValue[i],
+               value:yValue[i]
+            });  
+           }
+           return res;
+           })()
+        }]
+      })
+      }.bind(this),
 
-  error:function()
-  {
-  alert("访问服务器失败");
-  }
+      error:function()
+      {
+      alert("访问服务器失败");
+      }
 
-  })
+    })
   }
   },
   data () {
@@ -137,6 +137,10 @@
   },
   data:[]
   }]
+  });
+  SpaMap.on('click', function (params) {
+    var city = params.name;
+    alert(city+"的恶意域名数量为:"+params.value);
   });
   window.onresize = myChart.resize;
   },
