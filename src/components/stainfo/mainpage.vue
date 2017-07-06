@@ -2,7 +2,7 @@
 	<main id="sta-container">
 		<div class="main-nav">
       
-	       <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+	       <el-menu default-active="1" class="el-menu-vertical-demo">
            
            <el-submenu index="1">
              <template slot="title"><i class="el-icon-warning"></i>注册信息黑名单 </template> 

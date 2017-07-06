@@ -11,13 +11,44 @@
       stripe
       style="width: 100%">
       <el-table-column
-        prop="address"
+        prop="province"
         label="省份"
-        width="400">
+        width="200">
       </el-table-column>
       <el-table-column
-        prop="number"
-        label="非法域名数量"
+        prop="domain"
+        label="域名"
+        width="200"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="名称"
+        width="250"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="nature"
+        label="分类"
+        width="250"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="phone"
+        label="电话"
+        width="250"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="score"
+        label="评价分数"
+        width="150"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="email"
+        label="邮箱"
+        width="250"
         >
       </el-table-column>
     </el-table>
@@ -25,7 +56,7 @@
     <div>
       <el-pagination
         @current-change="pageIndexChange"
-        :current-page="PageIndex"
+        :current-page="pageChange"
         :page-size="10"
         layout="total, prev, pager, next, jumper"
         :total="100">
@@ -37,13 +68,17 @@
 <script>
   import echarts from "echarts/lib/echarts";
   import "echarts/map/js/china"
-
+  let SpaMap;
   export default{
     data(){
       return{
-        SpaMap:'',
         badPie:'',
-        tableData:[]
+        tableData:[],
+        pageChange:1,
+        mes:{
+          country:'',
+          page:''
+        }
       }
     },
     mounted(){
@@ -53,7 +88,7 @@
     methods:{
       createMap:function(){
         var that = this;
-        this.SpaMap = echarts.init(document.getElementById('spa-map'));
+        SpaMap = echarts.init(document.getElementById('spa-map'));
         var option = {
           tooltip: {
               trigger: 'item'
@@ -119,15 +154,13 @@
               }
           ]
       };
-      this.SpaMap.setOption(option);
-      this.SpaMap.on('click', function (params) {
-        that.tableData = []
-        var obj = {};
-        obj.address = params.name;
-        obj.number = params.value;
-        that.tableData[0] = obj;
+      SpaMap.setOption(option);
+      SpaMap.on('click', function (params) {
+        that.mes.country = params.name;
+        that.mes.page = params.value;
+        that.getTable();
       });
-      window.onresize = this.SpaMap.resize;
+      window.onresize = SpaMap.resize;
       },
       createPie:function(){
         var that = this;
@@ -174,8 +207,34 @@
         this.badPie.setOption(option);
         window.onresize = this.badPie.resize;
       },
-      pageIndexChange:function(){
-
+      getTable:function(){
+        var that = this;
+        this.pageChange = 1,
+        $.ajax({
+        url:this.myURL+"/countrycondition",
+        data:{"province":that.mes.country,"page":1},
+        dataType:"json",
+        type:"GET",
+        success:function(result)
+        {
+          that.tableData = result.domainData;
+        }
+        //AJAX
+        })
+      },
+      pageIndexChange:function(changePage){
+        var that = this;
+        $.ajax({
+        url:this.myURL+"/countrycondition",
+        data:{"province":that.mes.country,"page":changePage},
+        dataType:"json",
+        type:"GET",
+        success:function(result)
+        {
+          that.tableData = result.domainData;
+        }
+        //AJAX
+        });
       }
     }
   }
