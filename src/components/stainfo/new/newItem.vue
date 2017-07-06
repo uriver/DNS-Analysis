@@ -56,7 +56,7 @@
     <div>
       <el-pagination
         @current-change="pageIndexChange"
-        :current-page="pageChange"
+        :current-page="currentPage"
         :page-size="10"
         layout="total, prev, pager, next, jumper"
         :total="100">
@@ -74,7 +74,7 @@
       return{
         badPie:'',
         tableData:[],
-        pageChange:1,
+        currentPage:1,
         mes:{
           country:'',
           page:''
@@ -84,6 +84,7 @@
     mounted(){
       this.createMap();
       this.createPie();
+      this.getCountryData();
     },
     methods:{
       createMap:function(){
@@ -158,6 +159,7 @@
       SpaMap.on('click', function (params) {
         that.mes.country = params.name;
         that.mes.page = params.value;
+        that.currentPage = 1;
         that.getTable();
       });
       window.onresize = SpaMap.resize;
@@ -209,7 +211,6 @@
       },
       getTable:function(){
         var that = this;
-        this.pageChange = 1,
         $.ajax({
         url:this.myURL+"/countrycondition",
         data:{"province":that.mes.country,"page":1},
@@ -235,6 +236,10 @@
         }
         //AJAX
         });
+      },
+      getCountryData:function(){
+        this.mes.country = "全国",
+        this.getTable();
       }
     }
   }
