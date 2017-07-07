@@ -59,7 +59,7 @@
         :current-page="currentPage"
         :page-size="10"
         layout="total, prev, pager, next, jumper"
-        :total="100">
+        :total="1000">
       </el-pagination>
     </div>
 
@@ -75,6 +75,8 @@
         badPie:'',
         tableData:[],
         currentPage:1,
+        countryMap:[],
+        pieMap:[{"name":"合法域名","value":0},{"name":"非法域名","value":0}],
         mes:{
           country:'',
           page:''
@@ -82,8 +84,8 @@
       }
     },
     mounted(){
+      this.getMapData();
       this.createMap();
-      this.createPie();
       this.getCountryData();
     },
     methods:{
@@ -116,42 +118,7 @@
                           show: true
                       }
                   },
-                  data:[
-                      {name: '北京',value: 1562,  },
-                      {name: '天津',value: 1232 },
-                      {name: '上海',value: 2341 },
-                      {name: '重庆',value: 213 },
-                      {name: '河北',value: 234 },
-                      {name: '河南',value: 2334 },
-                      {name: '云南',value: 534 },
-                      {name: '辽宁',value: 654 },
-                      {name: '黑龙江',value: 123 },
-                      {name: '湖南',value: 543 },
-                      {name: '安徽',value: 234 },
-                      {name: '山东',value: 345 },
-                      {name: '新疆',value: 564 },
-                      {name: '江苏',value: 2344 },
-                      {name: '浙江',value: 345 },
-                      {name: '江西',value: 897 },
-                      {name: '湖北',value: 764 },
-                      {name: '广西',value: 785 },
-                      {name: '甘肃',value: 967 },
-                      {name: '山西',value: 234 },
-                      {name: '内蒙古',value: 452 },
-                      {name: '陕西',value: 562 },
-                      {name: '吉林',value: 456 },
-                      {name: '福建',value: 232 },
-                      {name: '贵州',value: 645 },
-                      {name: '广东',value: 2323 },
-                      {name: '青海',value: 3453 },
-                      {name: '西藏',value: 675 },
-                      {name: '四川',value: 4546 },
-                      {name: '宁夏',value: 563 },
-                      {name: '海南',value: 342 },
-                      {name: '台湾',value: 8765 },
-                      {name: '香港',value: 756 },
-                      {name: '澳门',value: 888 }
-                  ]
+                  data:that.countryMap
               }
           ]
       };
@@ -161,8 +128,20 @@
         that.mes.page = params.value;
         that.currentPage = 1;
         that.getTable();
+        that.createPie();
       });
       window.onresize = SpaMap.resize;
+      },
+      getMapData:function(){
+        var that = this;
+        $.ajax({
+          url:this.myURL+"/countrycondition",
+          dataType:"json",
+          type:"GET",
+          success:function(result){
+            that.countryMap = result.domainNum;
+          }
+        })
       },
       createPie:function(){
         var that = this;
@@ -192,10 +171,7 @@
                     },
                     radius : '80%',
                     center: ['50%', '60%'],
-                    data:[
-                        {value:335, name:'合法域名'},
-                        {value:310, name:'非法域名'},
-                    ],
+                    data:that.pieMap,
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,
@@ -212,13 +188,15 @@
       getTable:function(){
         var that = this;
         $.ajax({
-        url:this.myURL+"/countrycondition",
+        url:this.myURL+"/provincecondition",
         data:{"province":that.mes.country,"page":1},
         dataType:"json",
         type:"GET",
         success:function(result)
         {
-          that.tableData = result.domainData;
+          that.tableData = result.provinceData;
+          that.pieMap[0].value = result.provinceNum.allDomain -  result.provinceNum.maliciousDomain;
+          that.pieMap[1].value = result.provinceNum.maliciousDomain;
         }
         //AJAX
         })
@@ -226,13 +204,13 @@
       pageIndexChange:function(changePage){
         var that = this;
         $.ajax({
-        url:this.myURL+"/countrycondition",
+        url:this.myURL+"/provincecondition",
         data:{"province":that.mes.country,"page":changePage},
         dataType:"json",
         type:"GET",
         success:function(result)
         {
-          that.tableData = result.domainData;
+          that.tableData = result.provinceData;
         }
         //AJAX
         });
