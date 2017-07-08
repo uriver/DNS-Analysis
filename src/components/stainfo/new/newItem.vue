@@ -59,7 +59,7 @@
         :current-page="currentPage"
         :page-size="10"
         layout="total, prev, pager, next, jumper"
-        :total="1000">
+        :total="allDomain">
       </el-pagination>
     </div>
 
@@ -76,6 +76,7 @@
         tableData:[],
         currentPage:1,
         countryMap:[],
+        allDomain:0,
         pieMap:[{"name":"合法域名","value":0},{"name":"非法域名","value":0}],
         mes:{
           country:'',
@@ -85,7 +86,7 @@
     },
     mounted(){
       this.getMapData();
-      this.createMap();
+      
       this.getCountryData();
     },
     methods:{
@@ -140,6 +141,8 @@
           type:"GET",
           success:function(result){
             that.countryMap = result.domainNum;
+            that.createMap();
+            console.log(that.countryMap)
           }
         })
       },
@@ -195,8 +198,10 @@
         success:function(result)
         {
           that.tableData = result.provinceData;
+          that.allDomain = result.provinceNum.allDomain;
           that.pieMap[0].value = result.provinceNum.allDomain -  result.provinceNum.maliciousDomain;
           that.pieMap[1].value = result.provinceNum.maliciousDomain;
+          that.createPie();
         }
         //AJAX
         })
