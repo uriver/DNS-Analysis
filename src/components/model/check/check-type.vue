@@ -4,7 +4,32 @@
     <p></p>
     <div class="tab1">
       <h2>域名性质：{{illtype}}</h2>
-      <h2>评估分数: {{score}}</h2>
+      <h2>评估分数评估</h2>
+      <el-table
+      :data="scoreData"
+      stripe
+      style="width: 100%">
+      <el-table-column
+        prop="locateScore"
+        label="位置分数"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="whoisScore"
+        label="Whois分数"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="contentScore"
+        label="内容分数"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="score"
+        label="总分"
+        >
+      </el-table-column>
+    </el-table>
     </div>
   </div>
 </template>
@@ -14,7 +39,8 @@ export default{
     return{
       illtype:"",
       score:"",
-      urlData:''
+      urlData:'',
+      scoreData:[{}]
     }
   },
   mounted:function(){
@@ -34,7 +60,7 @@ export default{
         type:'GET',
         success:function (samedata) {
             this.illtype=samedata.base_info.area;
-            this.score=samedata.base_info.score;
+            this.scoreData[0]=samedata.base_info;
         }.bind(this),
         error:function(){
             alert('获取数据失败！')

@@ -31,8 +31,9 @@
 			}
 		},
 		mounted(){
+		var that = this;
 		$.ajax({
-	        url:this.myURL+"/model",
+	        url:this.myURL+"/homepage",
 	        dataType:"json",
 	        type:'GET',
 	        success:function (result)

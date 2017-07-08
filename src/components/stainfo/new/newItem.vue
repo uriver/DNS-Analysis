@@ -9,6 +9,7 @@
     <el-table
       :data="tableData"
       stripe
+      @row-click='handleRowHandle'
       style="width: 100%">
       <el-table-column
         prop="province"
@@ -223,6 +224,9 @@
       getCountryData:function(){
         this.mes.country = "全国",
         this.getTable();
+      },
+      handleRowHandle:function(row,event,column){
+        this.$router.push({ path: '/check?value='+row.domain });
       }
     }
   }
