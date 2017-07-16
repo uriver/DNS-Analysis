@@ -10,7 +10,7 @@
                 </el-option>
           </el-select>
         </div>
-    <h1 class="head">恶意域名的whois信息概览</h1>
+    <h1 class="head">非法域名空间分布统计</h1>
     <div id="unknown">
       <span></span>
       <span class="num-class">{{unknown}}</span>

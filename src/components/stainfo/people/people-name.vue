@@ -86,7 +86,7 @@
      res.push({
          Alldomain:result.info[i].Alldomain,  //善意的数量
          name: result.info[i].name,
-         baddomain:result.info[i].baddomain   //恶意的数量 
+         baddomain:result.info[i].baddomain   //非法的数量 
      }), 
       xValue[i]=result.info[i].name;
       kind[i]=result.info[i].Alldomain-result.info[i].baddomain;
@@ -102,7 +102,7 @@ yearChart.setOption({
   }],
  series: [
 {
-  name:'恶意域名数量',
+  name:'非法域名数量',
   data:bad
  },
 {
@@ -127,7 +127,7 @@ yearChart.setOption({
   mounted () {
    yearChart = echarts.init(document.getElementById('top'),'macarons');
   yearChart.setOption({
-  title: { text: '恶意注册人信息', x:'center' },
+  title: { text: '非法注册人信息', x:'center' },
   tooltip: {
   trigger: 'axis',
   axisPointer: {
@@ -138,7 +138,7 @@ yearChart.setOption({
   }
   },
   legend: {
-  data:['趋势走向','正常域名数量','恶意域名数量'],
+  data:['趋势走向','正常域名数量','非法域名数量'],
   align: 'left',
   left: 20
   },
@@ -167,7 +167,7 @@ yearChart.setOption({
   }],
 
   series: [{
-  name:'恶意域名数量',
+  name:'非法域名数量',
   type:'bar',
   stack: '域名数量',
   data:[],
@@ -212,7 +212,7 @@ yearChart.setOption({
      res.push({
          Alldomain:result.info[i].Alldomain,  //善意的数量
          name: result.info[i].name,
-         baddomain:result.info[i].baddomain   //恶意的数量 
+         baddomain:result.info[i].baddomain   //非法的数量 
      }), 
       xValue[i]=result.info[i].name;
       kind[i]=result.info[i].Alldomain-result.info[i].baddomain;
@@ -228,7 +228,7 @@ yearChart.setOption({
   }],
  series: [
 {
-  name:'恶意域名数量',
+  name:'非法域名数量',
   data:bad
  },
 {

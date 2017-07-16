@@ -80,7 +80,7 @@
            
           var surChart = echarts.init(document.getElementById('surChart'),'macarons');
           surChart.setOption({
-          title: { text: '恶意域名IP更新频率', x:'center' },
+          title: { text: '非法域名IP更新频率', x:'center' },
           tooltip: {},
           xAxis: {
           data: [],

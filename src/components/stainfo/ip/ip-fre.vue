@@ -22,7 +22,7 @@
 		mounted () {
 			var num1Chart = echarts.init(document.getElementById('IP-num1'),'macarons');
             num1Chart.setOption({
-                title: { text: '当前恶意域名在线IP与离线IP数量显示', x:'center' },
+                title: { text: '当前非法域名在线IP与离线IP数量显示', x:'center' },
                 tooltip: {},
                 xAxis: {
                     data: ["Online","Offline"]

@@ -25,14 +25,14 @@
 			        <template slot="title"><i class="el-icon-message"></i>时间维度展示信息</template>
 			        <router-link to='/sta-info/time/time-year'><el-menu-item index="4-1">按创建域名/到期域名数量展示</el-menu-item></router-link>
 			        <router-link to='/sta-info/time/time-update'><el-menu-item index="4-2">按更新时间频率展示</el-menu-item></router-link>
-              <router-link to="/sta-info/time/time-sur"><el-menu-item index="4-3">恶意域名总体生存时间</el-menu-item></router-link>
+              <router-link to="/sta-info/time/time-sur"><el-menu-item index="4-3">非法域名总体生存时间</el-menu-item></router-link>
 		        </el-submenu>
            
 		        <el-submenu index="5">
 			        <template slot="title"><i class="el-icon-search"></i>解析DNS和IP的相关信息</template>
-			        <router-link to='/sta-info/ip/ip-num'><el-menu-item index="5-1">恶意域名的Online/Offline</el-menu-item></router-link>
-			        <router-link to='/sta-info/ip/ip-sur'><el-menu-item index="5-2">恶意域名IP更换频率图</el-menu-item></router-link>
-			        <!--router-link to='/sta-info/ip-fre'><el-menu-item index="6-3">恶意域名IP更换频率图</el-menu-item></router-link-->
+			        <router-link to='/sta-info/ip/ip-num'><el-menu-item index="5-1">非法域名的Online/Offline</el-menu-item></router-link>
+			        <router-link to='/sta-info/ip/ip-sur'><el-menu-item index="5-2">非法域名IP更换频率图</el-menu-item></router-link>
+			        <!--router-link to='/sta-info/ip-fre'><el-menu-item index="6-3">非法域名IP更换频率图</el-menu-item></router-link-->
 		        </el-submenu>
 
             <router-link to='/sta-info/new/new-item'><el-menu-item index="6"><i class="el-icon-setting"></i>新增地图展示</el-menu-item></router-link>

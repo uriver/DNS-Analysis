@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <h1 class="head">恶意域名概览</h1>
+    <h1 class="head">非法域名概览</h1>
     <div id="spa-map"></div>
     <div id="myPie"></div>
 
@@ -108,7 +108,7 @@
           },
           series: [
               {
-                  name: '恶意域名',
+                  name: '非法域名',
                   type: 'map',
                   mapType: 'china',
                   roam: false,

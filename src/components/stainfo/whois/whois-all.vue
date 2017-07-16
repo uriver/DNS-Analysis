@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--核心的表格内容-->
-    <h1 class="head">恶意域名的whois信息概览</h1>
+    <h1 class="head">非法域名的whois信息概览</h1>
     <el-table
       :data="whoisAll"
       height="700"

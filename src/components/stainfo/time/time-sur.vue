@@ -12,7 +12,7 @@
   mounted () {
   var upChart = echarts.init(document.getElementById('upChart'),'macarons');
   upChart.setOption({
-  title: { text: '恶意域名总体生存时间', x:'center' },
+  title: { text: '非法域名总体生存时间', x:'center' },
   tooltip: {},
   xAxis: {
   name:'天',

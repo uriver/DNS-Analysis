@@ -13,7 +13,7 @@
   mounted () {
   var signChart = echarts.init(document.getElementById('signChart'),'macarons');
   signChart.setOption({
-  title: { text: '非法域名所属注册商', x:'center' },
+  title: { text: '非法域名覆盖顶级域', x:'center' },
   tooltip: {},
   xAxis: {
   //data: ["A","B","C","D","E","F","G","H","I","J"]
