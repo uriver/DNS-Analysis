@@ -3,7 +3,7 @@
     <div class="main-right">
       <div class="con-underline">
         <div class="dns-num">
-          <span>当前非法注册邮箱总量为:</span>
+          <span>当前非法域名注册邮箱总量为:</span>
           <span class="num-class">{{ dnsnum }}</span>
         </div>
       </div>
