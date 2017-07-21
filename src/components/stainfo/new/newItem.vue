@@ -24,31 +24,31 @@
       </el-table-column>
       <el-table-column
         prop="name"
-        label="名称"
+        label="注册人姓名"
         width="250"
         >
       </el-table-column>
       <el-table-column
         prop="nature"
-        label="分类"
+        label="类型"
         width="250"
         >
       </el-table-column>
       <el-table-column
         prop="phone"
-        label="电话"
+        label="注册电话"
         width="250"
         >
       </el-table-column>
       <el-table-column
         prop="score"
-        label="评价分数"
+        label="可疑程度"
         width="150"
         >
       </el-table-column>
       <el-table-column
         prop="email"
-        label="邮箱"
+        label="注册邮箱"
         width="250"
         >
       </el-table-column>

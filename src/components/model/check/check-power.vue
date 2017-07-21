@@ -44,7 +44,9 @@
         <h3>包含的非法链接与分类</h3>
       </div>
       <div class='tab2'>
-        <p>{{Pow.dnsherf}}</p>
+        <p v-for="item in Pow.newHerf">
+          {{item}}
+        </p>
       </div>
     </div>
   </div>
@@ -55,6 +57,7 @@
       return{
         Pow:[],
         urlData:"",
+        testData:"this is\r\na test!"
       }
     },
     mounted:function(){
@@ -74,6 +77,7 @@
           async :false,
           success:function (data) {
               this.Pow=data.analysis[0];
+              this.Pow.newHerf=this.Pow.dnsherf.split("||");
           }.bind(this),
           error:function(){
               alert('获取数据失败！')
