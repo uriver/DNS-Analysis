@@ -14,7 +14,7 @@
   		<div class='tab2'>
   			<p>{{Mes.dnskey}}</p>
   		</div>
-  		<img :src="ImgPath" />  
+  		<img :src="ImgPath" width="700" height="300" />  
   	</div>
   </div>
 </template>

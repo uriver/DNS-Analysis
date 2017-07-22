@@ -14,7 +14,7 @@
       :data="scoreData"
       v-if = "ifShow"
       stripe
-      style="width: 100%">
+      style="width: 80%">
       <el-table-column
         prop="locateScore"
         label="空间一致性"
